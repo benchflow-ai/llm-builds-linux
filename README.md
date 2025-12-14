@@ -1,78 +1,49 @@
-# benchflow
+# llm-builds-linux
 
-Hard tasks for coding agents. Current focus: Can agents build Linux distros?
+Can LLM agents build Linux distros? How far can they go?
 
-## Inspirations
+## Why this matters
 
-- Deepmind L9 scientist (responsible for RL training for Gemini CLI) told me they were looking for tasks that take at least 100 steps for agents to solve and low pass rate.
-- Many AI hardware founders told me that claude code currently fails very hard at building linux distros for them, despite doing everything else pretty decently. They need to do it on a daily basis because it's an important part of their product. (tasks are hard)
-- LLM Speedrunner is a very interesting benchmark that lets ai build an entire models https://github.com/facebookresearch/llm-speedrunner
-- Also general vibe from talks with frontier lab employees + startup founders + vcs + researchers give me hints that these things are not done (at least properly yet):
-  - Coding agent on complex repos
-  - Coding agents on repos that need onboarding (k8s e.g.)
-  - What areas are coding agents good at (python, fullstack, design?)
-  - E2e tasks
-  - Long horizon tasks
+Many AI hardware founders told me that Claude Code currently fails very hard at building Linux distros for them, despite doing everything else pretty decently. They need to do it on a daily basis because it's an important part of their product.
 
-## Ideas
+From talks with frontier lab employees, startup founders, VCs, and researchers - there's a general sense that coding agents haven't cracked these kinds of tasks yet:
+- Long horizon tasks (100+ steps)
+- E2E tasks with complex feedback loops
+- Tasks requiring deep system-level understanding
 
-- 100 tasks that take agents 100 steps to solve (coding mostly)
-- Can agents build linux distro (or how many)
-- Can agents build chrome (and can they do follow up tasks)
-- Can agents build their own bun / rust cargo / openshift / kubernetes etc etc.
-- Given any repo / open-source repo and relevant keys / env vars. How far can agents go
-- Can agents build their own mobile os etc.
-- Inspection on which mode is good at what. E.g. openai models are good at python and claude better at design (similar to design arena)
-- Can we harvest talents worldwide (China, India) to create these kinds of environments
+## Task ideas
 
-## People to outreach to
+- Build a minimal bootable Linux from scratch (LFS-style)
+- Create a custom Ubuntu/Fedora spin using live-build or lorax
+- Build embedded Linux with Yocto/Buildroot for specific hardware
+- Create a container-optimized minimal distro (like Alpine)
+- Fix a broken distro build
 
-- People recently worked at eval startup or on linkedin still working on eval / ai infra / data companies. Use ratebench to approach.
-- People at cursor, anthropic, cognition, codegen.com, codeos etc. use ratebench to interview
-- Researchers at openai, researchers of evals. Use ratebench to interview.
-- People Ashwarya knew
-- All people from dc agents, terminal bench, harbor (discord, google docs)
-- Swebench slack channel, github
-- Dolby labs people (enterprise ai use case, how they use claude code, their prs etc.)
-- Chrome people (used to add dolby vision support)
-- Red hat people (obviously). How many flavors of linux image can claude code build
-- Cloud native, kubernetes, docker people
+## Tools agents would need
 
-Target: 50 ppl and 10 replies
+- debootstrap, live-build (Debian/Ubuntu)
+- lorax, kickstart (Fedora/RHEL)
+- Yocto Project, Buildroot (embedded)
+- Docker/QEMU for testing builds
 
 ## Plan
 
-**Phase 1: make hard tasks (e.g. agent builds linux distros)**
+**Phase 1:** Create hard tasks around Linux distro building
 
 Success criteria:
-- Have at least a dozen envs / tasks
-- Have tested how far can different models go
+- At least a dozen environments / tasks
+- Tested how far different models can go
 
 **Phase 2:** TBD
 
 ---
 
-## Some initial thoughts
+## How this came about
 
-### Why Linux distro building is a good benchmark
+I've been talking to a lot of people in the AI space - researchers at frontier labs, startup founders building AI hardware, VCs evaluating AI companies. One thing kept coming up: current coding agents are surprisingly bad at certain categories of tasks, even when they excel at others.
 
-- Long-horizon multi-step tasks (100+ steps easily)
-- System-level understanding (kernel, bootloaders, package managers)
-- Config file generation and management
-- Very long feedback loops (builds take minutes to hours)
-- Errors are often cryptic (kernel panics, boot failures)
-- Many interdependent config files
+The Linux distro building problem came from AI hardware founders who deal with this daily. They use Claude Code for most of their coding work and it does well, but when it comes to building custom Linux images for their hardware, it falls apart. This isn't a niche use case for them - it's core to shipping their product.
 
-### Potential task variants
+What makes this interesting as a benchmark is that it naturally requires long-horizon planning (easily 100+ steps), deep system understanding (kernel, bootloaders, package managers, init systems), and dealing with long feedback loops where errors are cryptic and often don't surface until boot time. You can't fake your way through it.
 
-1. Minimal distro - Build a bootable Linux from scratch (LFS-style)
-2. Custom Ubuntu/Fedora spin - Use existing tools (live-build, lorax)
-3. Embedded Linux - Yocto/Buildroot for specific hardware
-4. Container-optimized - Minimal distro for containers (like Alpine)
-
-### Tools agents would need to use
-
-- debootstrap, live-build (Debian/Ubuntu)
-- lorax, kickstart (Fedora/RHEL)
-- Yocto Project, Buildroot (embedded)
-- Docker/QEMU for testing
+I'm starting this project to systematically test how far different LLM agents can actually go with these tasks. The goal is to build a set of reproducible environments and tasks, run different models through them, and document where they succeed and fail.
