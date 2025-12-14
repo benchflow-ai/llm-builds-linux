@@ -1,0 +1,80 @@
+name: "Create custom Ubuntu Live ISO with live-build"
+id: t2.1-ubuntu-livebuild
+tier: 2
+difficulty: medium
+
+description: |
+  Create a custom Ubuntu/Debian live ISO using the live-build tool.
+  The ISO should include custom packages and some form of branding
+  or customization. Must boot successfully in QEMU.
+
+estimated_time: "1-2 hours"
+estimated_steps: 50
+estimated_agent_turns: 30-50
+
+requirements:
+  - live-build tool configured correctly
+  - Custom package list defined
+  - At least one customization hook
+  - Bootable ISO generated
+
+success_criteria:
+  - lb_config_success: "lb config completes without errors"
+  - lb_build_success: "lb build completes without errors"
+  - iso_generated: "ISO file is generated (*.iso or *.hybrid.iso)"
+  - iso_boots: "ISO boots in QEMU without errors"
+  - packages_present: "Custom packages are installed and available"
+  - customization_visible: "Custom branding/welcome message visible"
+
+environment:
+  base_image: "ubuntu:22.04"
+  packages:
+    - live-build
+    - debootstrap
+    - squashfs-tools
+    - xorriso
+    - isolinux
+    - syslinux-common
+    - grub-pc-bin
+    - grub-efi-amd64-bin
+    - mtools
+    - qemu-system-x86
+  disk_space: "10GB minimum"
+  ram: "4GB minimum"
+
+deliverables:
+  - "*.hybrid.iso": "Bootable live ISO"
+  - "config/": "live-build configuration directory"
+  - "build.log": "Build log for debugging"
+
+verification:
+  method: "qemu-boot-test"
+  timeout_seconds: 120
+  expect_strings:
+    - "live"
+    - "login:"
+
+common_failures:
+  - error: "E: Unable to locate package"
+    cause: "Package not in configured archive areas"
+    fix: "Add 'universe' or 'multiverse' to --archive-areas"
+
+  - error: "Cannot bootstrap"
+    cause: "Mirror connectivity issues"
+    fix: "Use a closer/faster mirror with --mirror-bootstrap"
+
+  - error: "No space left on device"
+    cause: "Insufficient disk space"
+    fix: "Ensure at least 10GB free space"
+
+  - error: "Binary stage failed"
+    cause: "Missing bootloader packages"
+    fix: "Install grub-pc-bin, grub-efi-amd64-bin, isolinux"
+
+scoring:
+  config_created: 15
+  packages_defined: 15
+  hooks_created: 15
+  build_completes: 25
+  iso_boots: 20
+  customization_works: 10

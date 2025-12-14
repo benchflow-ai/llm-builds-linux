@@ -1,0 +1,58 @@
+name: "Build minimal embedded Linux with Buildroot"
+id: t2.3-buildroot-minimal
+tier: 2
+difficulty: medium
+
+description: |
+  Use Buildroot to create a minimal embedded Linux system for QEMU.
+  This tests understanding of build systems used by hardware companies.
+
+estimated_time: "1-3 hours"
+estimated_steps: 30
+estimated_agent_turns: 20-40
+
+requirements:
+  - Buildroot configured for QEMU x86_64
+  - Build completes successfully
+  - System boots in QEMU
+  - At least 2-3 custom packages included
+
+success_criteria:
+  - buildroot_configured: "Configuration created successfully"
+  - build_completes: "make completes without errors"
+  - images_created: "bzImage and rootfs exist in output/images/"
+  - boots_in_qemu: "System boots and shows login prompt"
+  - packages_present: "Custom packages are installed"
+
+environment:
+  base_image: "ubuntu:22.04"
+  packages:
+    - build-essential
+    - libncurses-dev
+    - rsync
+    - cpio
+    - python3
+    - unzip
+    - bc
+    - wget
+    - file
+    - qemu-system-x86
+  disk_space: "15GB minimum"
+  build_time: "30-60 minutes"
+
+deliverables:
+  - output/images/bzImage: "Linux kernel"
+  - output/images/rootfs.ext2: "Root filesystem"
+  - .config: "Buildroot configuration"
+
+verification:
+  method: "qemu-boot-test"
+  timeout_seconds: 90
+  boot_command: "./board/qemu/x86_64/start-qemu.sh"
+
+scoring:
+  download_extract: 10
+  config_created: 20
+  build_completes: 30
+  images_exist: 20
+  boots_successfully: 20

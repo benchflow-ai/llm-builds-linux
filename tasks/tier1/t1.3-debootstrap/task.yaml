@@ -1,0 +1,41 @@
+name: "Create minimal Debian rootfs with debootstrap"
+id: t1.3-debootstrap
+tier: 1
+difficulty: easy
+
+description: |
+  Use debootstrap to create a minimal Debian root filesystem.
+  The system should be functional when chrooted and have working
+  package management.
+
+estimated_time: "30-45 minutes"
+estimated_steps: 15
+estimated_agent_turns: 10-15
+
+requirements:
+  - debootstrap creates valid rootfs
+  - Can chroot into filesystem
+  - Package manager (apt) works
+  - Basic commands functional
+
+success_criteria:
+  - debootstrap_completes: "Debootstrap exits without errors"
+  - chroot_works: "Can chroot and run commands"
+  - apt_works: "Can run apt update/install"
+  - filesystem_valid: "Standard directories exist"
+
+environment:
+  base_image: "ubuntu:22.04"
+  packages:
+    - debootstrap
+    - qemu-user-static
+  requires_privileged: true
+
+deliverables:
+  - /rootfs: "Complete Debian root filesystem"
+
+scoring:
+  debootstrap_success: 40
+  chroot_functional: 30
+  apt_works: 20
+  networking_configured: 10

@@ -1,0 +1,78 @@
+name: "Build minimal bootable Linux with BusyBox"
+id: t1.2-busybox-kernel
+tier: 1
+difficulty: easy
+
+description: |
+  Build a minimal bootable Linux system using the Linux kernel
+  and BusyBox. The system should boot in QEMU and provide a
+  functional shell with basic commands.
+
+estimated_time: "45-60 minutes"
+estimated_steps: 25
+estimated_agent_turns: 15-25
+
+requirements:
+  - Linux kernel (latest stable, from kernel.org)
+  - BusyBox (latest stable, static build)
+  - Custom initramfs with init script
+  - QEMU boot test passes
+
+success_criteria:
+  - kernel_compiles: "Kernel compiles without errors"
+  - busybox_static: "BusyBox builds as static binary"
+  - boots_without_panic: "System boots without kernel panic"
+  - shell_appears: "Shell prompt appears"
+  - commands_work: "Basic commands (ls, cat, echo) function"
+  - file_operations: "Can create and read files"
+
+environment:
+  base_image: "ubuntu:22.04"
+  packages:
+    - build-essential
+    - libncurses-dev
+    - flex
+    - bison
+    - bc
+    - libelf-dev
+    - libssl-dev
+    - wget
+    - cpio
+    - qemu-system-x86
+
+deliverables:
+  - bzImage: "Compiled Linux kernel"
+  - initramfs.cpio.gz: "Compressed initramfs with BusyBox"
+  - boot.sh: "Script to boot in QEMU"
+
+verification:
+  method: "qemu-boot-test"
+  timeout_seconds: 60
+  expect_strings:
+    - "Linux version"
+    - "Freeing unused kernel"
+    - "/ #"
+
+common_failures:
+  - error: "Kernel panic - not syncing: No init found"
+    cause: "Missing /init or not executable"
+    fix: "Ensure /init exists in initramfs root and has +x permission"
+
+  - error: "Failed to execute /init"
+    cause: "BusyBox not static or wrong shebang"
+    fix: "Build BusyBox with CONFIG_STATIC=y, use #!/bin/busybox sh"
+
+  - error: "No output"
+    cause: "Console not configured"
+    fix: "Add console=ttyS0 to kernel command line"
+
+  - error: "/bin/sh: not found"
+    cause: "Missing BusyBox symlinks"
+    fix: "Create symlinks or reference busybox directly in init"
+
+scoring:
+  kernel_builds: 20
+  busybox_builds: 20
+  initramfs_created: 20
+  boots_to_init: 20
+  shell_functional: 20
