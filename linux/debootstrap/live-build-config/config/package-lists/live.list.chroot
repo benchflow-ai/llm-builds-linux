@@ -1,0 +1,20 @@
+# Live System Components
+casper
+discover
+laptop-detect
+os-prober
+
+# Plymouth Boot Splash
+plymouth
+plymouth-theme-spinner
+
+# Live System Installer (optional)
+ubiquity
+ubiquity-frontend-gtk
+ubiquity-casper
+ubiquity-slideshow-ubuntu
+
+# Firmware
+linux-firmware
+intel-microcode
+amd64-microcode

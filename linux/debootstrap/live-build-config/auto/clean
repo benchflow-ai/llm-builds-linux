@@ -1,0 +1,7 @@
+#!/bin/sh
+# live-build auto/clean script
+
+set -e
+
+lb clean noauto "${@}"
+rm -f build.log

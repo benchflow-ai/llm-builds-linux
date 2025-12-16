@@ -1,0 +1,6 @@
+#!/bin/sh
+# live-build auto/build script
+
+set -e
+
+lb build noauto "${@}" 2>&1 | tee build.log

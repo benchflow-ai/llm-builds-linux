@@ -1,0 +1,38 @@
+# System Utilities
+sudo
+htop
+neofetch
+vim
+nano
+curl
+wget
+git
+rsync
+zip
+unzip
+p7zip-full
+file
+
+# Hardware
+pciutils
+usbutils
+lshw
+dmidecode
+
+# Disk Tools
+gparted
+gnome-disk-utility
+dosfstools
+ntfs-3g
+exfat-fuse
+exfatprogs
+
+# System Tools
+gnome-system-monitor
+baobab
+synaptic
+
+# Terminal Tools
+tmux
+tree
+ncdu

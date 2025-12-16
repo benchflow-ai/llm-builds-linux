@@ -1,0 +1,43 @@
+# Desktop Environment - XFCE (lightweight)
+xfce4
+xfce4-goodies
+xfce4-terminal
+xfce4-power-manager
+xfce4-screenshooter
+xfce4-taskmanager
+thunar
+thunar-archive-plugin
+thunar-volman
+
+# Display Manager
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
+
+# X.org
+xorg
+xserver-xorg
+xserver-xorg-video-all
+xserver-xorg-input-all
+
+# Audio
+pulseaudio
+pavucontrol
+alsa-utils
+
+# Network
+network-manager
+network-manager-gnome
+wpasupplicant
+
+# Appearance
+arc-theme
+papirus-icon-theme
+fonts-ubuntu
+fonts-liberation
+fonts-dejavu
+
+# File Management
+gvfs
+gvfs-backends
+udisks2

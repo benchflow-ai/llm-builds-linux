@@ -1,0 +1,27 @@
+#!/bin/sh
+# live-build auto/config script
+# This sets up all the live-build configuration
+
+set -e
+
+lb config noauto \
+    --mode ubuntu \
+    --distribution jammy \
+    --archive-areas "main restricted universe multiverse" \
+    --architectures amd64 \
+    --binary-images iso-hybrid \
+    --bootloaders "grub-efi,syslinux" \
+    --debian-installer none \
+    --iso-application "CustomLinux Live" \
+    --iso-publisher "LLM-Built" \
+    --iso-volume "CUSTOMLINUX" \
+    --linux-flavours generic \
+    --memtest none \
+    --security true \
+    --updates true \
+    --backports false \
+    --apt-recommends true \
+    --firmware-binary true \
+    --firmware-chroot true \
+    --uefi-secure-boot enable \
+    "${@}"
