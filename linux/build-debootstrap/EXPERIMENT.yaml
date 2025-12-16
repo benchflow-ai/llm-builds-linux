@@ -1,0 +1,63 @@
+name: "Build Linux Distro with Debootstrap"
+id: build-linux-debootstrap
+category: build
+status: partial
+
+agent:
+  model: claude-opus-4-5
+  sessions: 2
+  total_duration_hours: 2
+  active_duration_hours: 1.5
+
+task:
+  description: "Build a bootable Linux distribution from scratch using debootstrap"
+  initial_prompt: "live build a linux distro"
+  difficulty: hard
+  estimated_steps: 80
+
+results:
+  success: false
+  partial_score: 0.7
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+    - "build-scripts/build-mint-distro.sh"
+  key_metrics:
+    build_stages: 8
+    packages_installed: 36
+    iso_created: true
+    uefi_boot_tested: false
+
+human_intervention:
+  count: 2
+  critical: false
+  details:
+    - "Platform hint (ARM64 vs AMD64)"
+    - "CAPTCHA during Reddit research"
+
+findings:
+  successes:
+    - "Cross-platform Docker build (macOS ARM to Linux AMD64)"
+    - "8-stage debootstrap pipeline"
+    - "Both BIOS and UEFI bootloader configuration"
+    - "Squashfs compression working"
+  failures:
+    - "UEFI boot testing incomplete (QEMU limitations on macOS)"
+    - "Some packages like lupin-casper don't exist"
+  lessons:
+    - "Platform awareness critical (ARM vs AMD64)"
+    - "Long-horizon tasks require context maintenance"
+    - "Error recovery in build failures is weak"
+
+references:
+  pr_url: "https://github.com/benchflow-ai/llm-builds-linux/pull/3"
+  docs:
+    - "https://wiki.debian.org/Debootstrap"
+    - "https://www.linuxfromscratch.org/"
+
+tags:
+  - linux
+  - distro
+  - debootstrap
+  - docker
+  - bootable-iso
