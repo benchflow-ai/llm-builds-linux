@@ -1,6 +1,6 @@
 # Agent Trajectory Summary: Building Chromium
 
-**PR:** https://github.com/benchflow-ai/llm-builds-linux/pull/1 (MERGED)
+**PR:** https://github.com/benchflow-ai/llm-builds-linux/pull/1 (MERGED); [x post](https://github.com/benchflow-ai/llm-builds-linux/blob/main/trajectories/SUMMARY.md)
 
 This document summarizes the complete trajectory of LLM agents building Chromium from source on macOS ARM64.
 
