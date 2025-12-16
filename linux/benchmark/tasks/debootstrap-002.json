@@ -1,0 +1,64 @@
+{
+  "id": "debootstrap-002",
+  "name": "Bootable Debian Disk Image",
+  "description": "Create a bootable Debian disk image from debootstrap that boots in QEMU.",
+  "category": "tool_assisted",
+  "difficulty": "medium",
+  "instructions": "Create a bootable Debian disk image from a debootstrap rootfs.\n\nRequirements:\n1. Create a disk image file (e.g., 2GB)\n2. Partition it (one partition for root is fine)\n3. Format with ext4\n4. Mount and debootstrap into it\n5. Install kernel and bootloader (GRUB or extlinux)\n6. Set up /etc/fstab\n7. Configure networking (optional but nice)\n8. Boot in QEMU\n\nThis is significantly harder than just creating a rootfs because you need:\n- Disk partitioning\n- Bootloader installation\n- Kernel installation\n- Proper /etc/fstab\n- Understanding of boot process\n\nSuccess criteria:\n- Disk image boots to login prompt in QEMU\n- Can log in as root",
+  "expected_steps": 50,
+  "prerequisites": ["debootstrap-001"],
+  "base_image": "ubuntu:22.04",
+  "required_packages": [
+    "debootstrap", "debian-archive-keyring", "qemu-system-x86",
+    "parted", "e2fsprogs", "grub-pc-bin", "grub-efi-amd64-bin",
+    "dosfstools", "mtools", "kmod"
+  ],
+  "required_disk_gb": 15,
+  "required_ram_gb": 4,
+  "verification_steps": [
+    {
+      "type": "file_check",
+      "description": "Disk image exists",
+      "expected_files": ["debian.img"],
+      "weight": 1.0,
+      "required": true
+    },
+    {
+      "type": "size_check",
+      "description": "Disk image is reasonable size",
+      "expected_files": ["debian.img"],
+      "min_size_mb": 500,
+      "max_size_mb": 4000,
+      "weight": 0.5,
+      "required": false
+    },
+    {
+      "type": "boot_test",
+      "description": "Image boots in QEMU",
+      "command": "timeout 90 qemu-system-x86_64 -m 1024 -drive file=debian.img,format=raw -nographic 2>&1 | grep -E 'login:'",
+      "expected_output": "login:",
+      "timeout_seconds": 120,
+      "boot_timeout_seconds": 90,
+      "weight": 2.0,
+      "required": true
+    }
+  ],
+  "success_artifacts": [
+    "debian.img"
+  ],
+  "time_limit_minutes": 90,
+  "expected_build_minutes": 45,
+  "tags": ["debootstrap", "debian", "bootable", "disk-image", "grub"],
+  "reference_docs": [
+    "https://wiki.debian.org/Debootstrap",
+    "https://www.gnu.org/software/grub/manual/grub/grub.html"
+  ],
+  "common_failure_points": [
+    "Bootloader not installed correctly",
+    "Kernel not installed or wrong version",
+    "Incorrect /etc/fstab UUIDs",
+    "Missing initramfs",
+    "GRUB config pointing to wrong device"
+  ],
+  "version": "1.0.0"
+}

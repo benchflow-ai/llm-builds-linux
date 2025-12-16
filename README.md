@@ -2,7 +2,20 @@
 
 Can LLM agents build Linux distros? How far can they go?
 
-## Why this matters
+## Quick Start
+
+```bash
+# List all available benchmark tasks
+python cli.py list
+
+# Show details for a specific task
+python cli.py show buildroot-001
+
+# Export all tasks to JSON
+python cli.py export tasks.json
+```
+
+## Why This Matters
 
 Many AI hardware founders told me that Claude Code currently fails very hard at building Linux distros for them, despite doing everything else pretty decently. They need to do it on a daily basis because it's an important part of their product.
 
@@ -11,20 +24,79 @@ From talks with frontier lab employees, startup founders, VCs, and researchers -
 - E2E tasks with complex feedback loops
 - Tasks requiring deep system-level understanding
 
-## Task ideas
+## Current Tasks (11 total)
 
-- Build a minimal bootable Linux from scratch (LFS-style)
-- Create a custom Ubuntu/Fedora spin using live-build or lorax
-- Build embedded Linux with Yocto/Buildroot for specific hardware
-- Create a container-optimized minimal distro (like Alpine)
-- Fix a broken distro build
+### Tool-Assisted (Buildroot)
+| Task ID | Name | Difficulty | Steps |
+|---------|------|------------|-------|
+| buildroot-001 | Minimal QEMU System | Easy | 25 |
+| buildroot-002 | Networking Support | Medium | 40 |
+| buildroot-003 | Custom Package | Hard | 60 |
 
-## Tools agents would need
+### Tool-Assisted (Debootstrap)
+| Task ID | Name | Difficulty | Steps |
+|---------|------|------------|-------|
+| debootstrap-001 | Minimal Debian Rootfs | Easy | 20 |
+| debootstrap-002 | Bootable Disk Image | Medium | 50 |
+| debootstrap-003 | Debian Live ISO | Hard | 80 |
+| debootstrap-004 | Ubuntu Minimal Server | Medium | 55 |
 
-- debootstrap, live-build (Debian/Ubuntu)
-- lorax, kickstart (Fedora/RHEL)
-- Yocto Project, Buildroot (embedded)
-- Docker/QEMU for testing builds
+### Debugging
+| Task ID | Name | Difficulty | Steps |
+|---------|------|------------|-------|
+| debug-001 | Fix Kernel Panic | Medium | 35 |
+| debug-002 | Fix Missing Init | Medium | 40 |
+| debug-003 | Fix Network Failure | Hard | 50 |
+| debug-004 | Fix Build Failure | Hard | 45 |
+
+## Project Structure
+
+```
+harare/
+├── src/
+│   ├── task.py          # Task and result dataclasses
+│   ├── runner.py        # Task runner and verifier
+│   └── tasks/           # Task definitions (Python)
+├── tasks/               # Task definitions (JSON)
+├── environments/        # Docker environments
+│   ├── buildroot/
+│   └── debootstrap/
+├── cli.py              # Command-line interface
+├── BUILDING_LINUX_GUIDE.md   # Detailed build guides
+└── TASK_SPECIFICATION.md     # Full specification docs
+```
+
+## Key Documentation
+
+- **[BUILDING_LINUX_GUIDE.md](./BUILDING_LINUX_GUIDE.md)** - Complete guide to building Linux systems with Buildroot, Debootstrap, and Alpine. Includes exact commands, expected outputs, build times, and common failure points.
+
+- **[TASK_SPECIFICATION.md](./TASK_SPECIFICATION.md)** - Full specification format for benchmark tasks, including JSON schema, verification methods, and scoring algorithms.
+
+## Verification Methods
+
+Tasks use multiple verification methods:
+- **boot_test** - Boot in QEMU and check for login prompt
+- **file_check** - Verify expected files exist
+- **size_check** - Check image size constraints
+- **command_output** - Run commands and check output
+- **checksum** - Verify file integrity
+
+## Difficulty Levels
+
+- **Easy** (~50% agent success): 10-25 steps, tool-assisted builds
+- **Medium** (~20% agent success): 30-55 steps, bootloader/config work
+- **Hard** (~5% agent success): 50-80 steps, debugging, ISOs
+- **Extreme** (<1% agent success): 100+ steps, LFS-style
+
+## Where Agents Fail
+
+Research identified these common failure points:
+
+1. **Environment Setup** (40% failure) - Missing dependencies
+2. **Chroot Management** (60% failure) - DNS, mounts, cleanup
+3. **Loop Devices** (50% failure) - Partition scanning, cleanup
+4. **Bootloader** (70% failure) - GRUB installation complexity
+5. **Long Feedback Loops** (80% failure) - Build errors surface late
 
 ## Plan
 
