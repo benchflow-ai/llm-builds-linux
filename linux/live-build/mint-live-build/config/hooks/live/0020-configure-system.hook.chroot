@@ -1,0 +1,56 @@
+#!/bin/sh
+# Configure system settings for Monterrey Linux
+
+set -e
+
+# Set hostname
+echo "monterrey" > /etc/hostname
+
+# Create /etc/hosts
+cat > /etc/hosts << 'EOF'
+127.0.0.1   localhost
+127.0.1.1   monterrey
+
+# IPv6
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+EOF
+
+# Configure locale
+locale-gen en_US.UTF-8 || true
+update-locale LANG=en_US.UTF-8 || true
+
+# Set timezone
+ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+
+# Configure LightDM
+mkdir -p /etc/lightdm/lightdm.conf.d
+cat > /etc/lightdm/lightdm.conf.d/50-monterrey.conf << 'EOF'
+[Seat:*]
+user-session=cinnamon
+greeter-session=lightdm-gtk-greeter
+EOF
+
+# Configure LightDM GTK greeter (use default Ubuntu themes for now)
+cat > /etc/lightdm/lightdm-gtk-greeter.conf << 'EOF'
+[greeter]
+theme-name=Adwaita
+icon-theme-name=Adwaita
+font-name=Ubuntu 11
+user-background=true
+position=50%,center 50%,center
+clock-format=%H:%M
+indicators=~host;~spacer;~clock;~spacer;~session;~language;~a11y;~power
+EOF
+
+# Create live user configuration
+cat > /etc/casper.conf << 'EOF'
+# This file is sourced by casper
+export USERNAME="monterrey"
+export USERFULLNAME="Monterrey Live User"
+export HOST="monterrey"
+export BUILD_SYSTEM="Ubuntu"
+EOF
+
+echo "System configuration completed"

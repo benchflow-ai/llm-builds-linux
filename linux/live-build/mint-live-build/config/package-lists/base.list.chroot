@@ -1,0 +1,74 @@
+# Base system packages for live environment
+live-boot
+live-boot-initramfs-tools
+live-config
+live-config-systemd
+discover
+laptop-detect
+os-prober
+ubuntu-drivers-common
+
+# Boot and system
+grub-efi-amd64-signed
+shim-signed
+efibootmgr
+plymouth
+plymouth-theme-spinner
+syslinux
+syslinux-common
+librsvg2-bin
+
+# Firmware
+linux-firmware
+intel-microcode
+amd64-microcode
+
+# Core utilities
+sudo
+nano
+vim
+wget
+curl
+git
+htop
+rsync
+tree
+zip
+unzip
+p7zip-full
+
+# Networking
+network-manager
+network-manager-gnome
+wpasupplicant
+wireless-tools
+net-tools
+dnsutils
+
+# Hardware support
+pciutils
+usbutils
+lshw
+hwinfo
+
+# Filesystem tools
+gparted
+ntfs-3g
+dosfstools
+exfat-fuse
+e2fsprogs
+btrfs-progs
+
+# Audio
+pulseaudio
+pavucontrol
+alsa-utils
+
+# Printing
+cups
+cups-browsed
+system-config-printer
+
+# Localization
+language-pack-en
+language-pack-gnome-en

@@ -1,0 +1,19 @@
+#!/bin/sh
+# Create dummy gfxboot-theme-ubuntu files to satisfy live-build
+# These files are required by live-build in Ubuntu mode but don't exist in Noble
+
+set -e
+
+echo "Creating dummy gfxboot-theme-ubuntu files..."
+
+# Create the directory structure
+mkdir -p /usr/share/gfxboot-theme-ubuntu
+
+# Create an empty tar.gz file (will be extracted but is empty)
+# This satisfies the live-build script that tries to extract it
+cd /usr/share/gfxboot-theme-ubuntu
+touch empty
+tar czf bootlogo.tar.gz empty
+rm empty
+
+echo "Dummy gfxboot-theme-ubuntu created successfully"
