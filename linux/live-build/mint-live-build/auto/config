@@ -1,0 +1,35 @@
+#!/bin/sh
+
+set -e
+
+# Live-build configuration for Monterrey Linux
+# Based on Ubuntu 24.04 (noble) with Linux Mint packages
+
+lb config noauto \
+    --mode ubuntu \
+    --distribution noble \
+    --parent-distribution noble \
+    --parent-mirror-bootstrap "http://archive.ubuntu.com/ubuntu/" \
+    --parent-mirror-chroot "http://archive.ubuntu.com/ubuntu/" \
+    --parent-mirror-chroot-security "http://security.ubuntu.com/ubuntu/" \
+    --parent-mirror-binary "http://archive.ubuntu.com/ubuntu/" \
+    --parent-mirror-binary-security "http://security.ubuntu.com/ubuntu/" \
+    --archive-areas "main restricted universe multiverse" \
+    --architectures amd64 \
+    --linux-flavours generic \
+    --linux-packages "linux-image linux-headers" \
+    --binary-images iso-hybrid \
+    --bootloader syslinux \
+    --syslinux-theme live-build \
+    --bootappend-live "boot=live quiet splash" \
+    --debian-installer false \
+    --memtest none \
+    --cache true \
+    --apt-recommends true \
+    --initramfs live-boot \
+    --initsystem systemd \
+    --chroot-filesystem squashfs \
+    --iso-application "Monterrey Linux" \
+    --iso-publisher "LLM Builds Linux Project" \
+    --iso-volume "MONTERREY" \
+    "${@}"

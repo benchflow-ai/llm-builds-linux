@@ -1,0 +1,64 @@
+# X.org and display
+xorg
+xserver-xorg
+xserver-xorg-video-all
+xserver-xorg-input-all
+
+# Cinnamon Desktop Environment
+cinnamon
+cinnamon-desktop-environment
+cinnamon-session
+cinnamon-settings-daemon
+cinnamon-screensaver
+nemo
+nemo-fileroller
+
+# Display Manager
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
+
+# GTK and theming
+gnome-themes-extra
+gtk2-engines-murrine
+gtk2-engines-pixbuf
+dmz-cursor-theme
+fonts-ubuntu
+fonts-liberation
+fonts-dejavu-core
+fonts-noto-core
+fonts-noto-color-emoji
+
+# Core applications
+firefox
+thunderbird
+libreoffice
+libreoffice-gnome
+libreoffice-gtk3
+
+# Media
+vlc
+rhythmbox
+eog
+evince
+
+# Utilities
+gnome-calculator
+gnome-screenshot
+gnome-system-monitor
+gnome-disk-utility
+gnome-terminal
+file-roller
+baobab
+simple-scan
+transmission-gtk
+
+# Text editors
+gedit
+
+# Image editing
+gimp
+
+# Accessibility
+at-spi2-core
+orca

@@ -1,0 +1,32 @@
+#!/bin/sh
+# Cleanup hook for Monterrey Linux
+
+set -e
+
+# Clean apt cache
+apt-get clean
+apt-get autoclean
+apt-get autoremove -y --purge || true
+
+# Remove temporary files
+rm -rf /tmp/*
+rm -rf /var/tmp/*
+
+# Clear apt lists (will be regenerated)
+rm -rf /var/lib/apt/lists/*
+
+# Remove machine-id (will be regenerated on boot)
+rm -f /etc/machine-id
+rm -f /var/lib/dbus/machine-id
+
+# Clear logs
+find /var/log -type f -exec truncate -s 0 {} \;
+
+# Remove SSH host keys (will be regenerated)
+rm -f /etc/ssh/ssh_host_*
+
+# Clear bash history
+rm -f /root/.bash_history
+rm -f /home/*/.bash_history 2>/dev/null || true
+
+echo "Cleanup completed"

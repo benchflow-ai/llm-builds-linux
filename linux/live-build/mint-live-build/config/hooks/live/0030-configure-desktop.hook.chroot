@@ -1,0 +1,73 @@
+#!/bin/sh
+# Configure desktop defaults for Monterrey Linux
+
+set -e
+
+# Create default user desktop configuration
+mkdir -p /etc/skel/.config/cinnamon/spices/applets
+mkdir -p /etc/skel/.config/cinnamon/spices/desklets
+mkdir -p /etc/skel/.config/cinnamon/spices/extensions
+mkdir -p /etc/skel/.config/autostart
+mkdir -p /etc/skel/Desktop
+mkdir -p /etc/skel/Documents
+mkdir -p /etc/skel/Downloads
+mkdir -p /etc/skel/Music
+mkdir -p /etc/skel/Pictures
+mkdir -p /etc/skel/Videos
+
+# Set default theme in dconf (using Adwaita for now)
+mkdir -p /etc/dconf/profile
+cat > /etc/dconf/profile/user << 'EOF'
+user-db:user
+system-db:local
+EOF
+
+mkdir -p /etc/dconf/db/local.d
+cat > /etc/dconf/db/local.d/00-monterrey << 'EOF'
+[org/cinnamon/desktop/interface]
+gtk-theme='Adwaita-dark'
+icon-theme='Adwaita'
+cursor-theme='DMZ-White'
+font-name='Ubuntu 10'
+
+[org/cinnamon/desktop/wm/preferences]
+theme='Adwaita-dark'
+titlebar-font='Ubuntu Bold 10'
+
+[org/cinnamon/theme]
+name='Adwaita-dark'
+
+[org/gnome/desktop/interface]
+gtk-theme='Adwaita-dark'
+icon-theme='Adwaita'
+cursor-theme='DMZ-White'
+font-name='Ubuntu 10'
+document-font-name='Ubuntu 10'
+monospace-font-name='Ubuntu Mono 11'
+
+[org/nemo/preferences]
+default-folder-viewer='icon-view'
+show-hidden-files=false
+
+[org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+visible-name='Default'
+use-system-font=false
+font='Ubuntu Mono 12'
+EOF
+
+# Update dconf database
+if command -v dconf > /dev/null 2>&1; then
+    dconf update || true
+fi
+
+# Enable NetworkManager
+systemctl enable NetworkManager || true
+
+# Enable LightDM
+systemctl enable lightdm || true
+
+# Disable unnecessary services for live session
+systemctl disable apt-daily.timer || true
+systemctl disable apt-daily-upgrade.timer || true
+
+echo "Desktop configuration completed"
