@@ -1,0 +1,62 @@
+name: "Linux Distro Building Benchmark Framework"
+id: benchmark-linux-distro
+category: benchmark
+status: success
+
+agent:
+  model: claude-opus-4-5
+  sessions: 2
+  total_duration_hours: 3
+  active_duration_hours: 2
+
+task:
+  description: "Design and implement a benchmark framework for evaluating AI agents on Linux distribution building tasks"
+  initial_prompt: "Start exploration task, Make plans, Preferably be able to build some Linux distros or have some things to demo for me"
+  difficulty: hard
+  estimated_steps: 100
+
+results:
+  success: true
+  partial_score: 1.0
+  artifacts:
+    - "cli.py"
+    - "src/task.py"
+    - "src/runner.py"
+    - "src/tasks/"
+  key_metrics:
+    tasks_defined: 11
+    verification_methods: 5
+    lines_of_code: 1200
+    practical_tests: 2
+
+human_intervention:
+  count: 0
+  critical: false
+  details: []
+
+findings:
+  successes:
+    - "Meta-thinking - Recognized need for framework"
+    - "Research synthesis - Combined web search with practical knowledge"
+    - "Structured design - Clean separation of concerns"
+    - "Practical validation - Actually booted a kernel"
+  failures:
+    - "Docker loop device limitations"
+    - "Full rootfs creation incomplete"
+  lessons:
+    - "Meta-tasks are valuable - Building the test is harder than passing it"
+    - "Research compounds - Web search + docs + practical tests = understanding"
+    - "Docker has limits - Some OS-level tasks need real Linux"
+
+references:
+  pr_url: "https://github.com/benchflow-ai/llm-builds-linux/pull/5"
+  docs:
+    - "https://buildroot.org/downloads/manual/manual.html"
+    - "https://wiki.debian.org/Debootstrap"
+
+tags:
+  - benchmark
+  - linux
+  - distro
+  - framework
+  - testing
