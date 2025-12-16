@@ -6,3 +6,7 @@ build/
 *.iso
 *.img
 *.log
+
+# Chromium build (too large to commit - ~35GB source + ~8GB build artifacts)
+chromium/
+depot_tools/

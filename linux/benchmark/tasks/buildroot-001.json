@@ -1,0 +1,71 @@
+{
+  "id": "buildroot-001",
+  "name": "Buildroot Minimal QEMU System",
+  "description": "Build a minimal bootable Linux system using Buildroot that boots in QEMU x86_64.",
+  "category": "tool_assisted",
+  "difficulty": "easy",
+  "instructions": "Build a minimal Linux system using Buildroot that can boot in QEMU.\n\nRequirements:\n1. Clone the Buildroot repository (use latest stable release)\n2. Configure for qemu_x86_64_defconfig\n3. Build the system (this will take 15-30 minutes)\n4. Boot the resulting image in QEMU and verify you get a shell prompt\n5. The system should respond to basic commands (ls, cat, echo)\n\nSuccess criteria:\n- Kernel boots without panic\n- Init system starts\n- You can log in and run commands\n- Output image exists at output/images/\n\nHints:\n- Use `make qemu_x86_64_defconfig` to start with a known-good config\n- Build with `make` (optionally `make -j$(nproc)` for parallel build)\n- QEMU command is documented in board/qemu/x86_64/readme.txt",
+  "expected_steps": 25,
+  "prerequisites": [],
+  "base_image": "ubuntu:22.04",
+  "required_packages": [
+    "build-essential", "gcc", "g++", "make", "patch", "gzip", "bzip2",
+    "perl", "cpio", "unzip", "rsync", "bc", "wget", "python3", "file",
+    "qemu-system-x86", "git", "libncurses-dev"
+  ],
+  "required_disk_gb": 15,
+  "required_ram_gb": 4,
+  "verification_steps": [
+    {
+      "type": "file_check",
+      "description": "Check that kernel image exists",
+      "expected_files": ["output/images/bzImage"],
+      "weight": 1.0,
+      "required": true
+    },
+    {
+      "type": "file_check",
+      "description": "Check that root filesystem exists",
+      "expected_files": ["output/images/rootfs.ext2"],
+      "weight": 1.0,
+      "required": true
+    },
+    {
+      "type": "size_check",
+      "description": "Root filesystem should be reasonable size",
+      "expected_files": ["output/images/rootfs.ext2"],
+      "min_size_mb": 5,
+      "max_size_mb": 500,
+      "weight": 0.5,
+      "required": false
+    },
+    {
+      "type": "boot_test",
+      "description": "System boots in QEMU and reaches login prompt",
+      "command": "timeout 60 qemu-system-x86_64 -M pc -kernel output/images/bzImage -drive file=output/images/rootfs.ext2,if=virtio,format=raw -append 'rootwait root=/dev/vda console=ttyS0' -net nic,model=virtio -net user -nographic 2>&1 | grep -E '(login:|#|\\$)'",
+      "expected_output": "login:",
+      "timeout_seconds": 120,
+      "boot_timeout_seconds": 120,
+      "weight": 2.0,
+      "required": true
+    }
+  ],
+  "success_artifacts": [
+    "output/images/bzImage",
+    "output/images/rootfs.ext2"
+  ],
+  "time_limit_minutes": 60,
+  "expected_build_minutes": 30,
+  "tags": ["buildroot", "qemu", "minimal", "x86_64"],
+  "reference_docs": [
+    "https://buildroot.org/downloads/manual/manual.html",
+    "https://buildroot.org/downloads/manual/manual.html#_qemu"
+  ],
+  "common_failure_points": [
+    "Missing build dependencies (ncurses-dev, etc.)",
+    "Incorrect QEMU command syntax",
+    "Not waiting long enough for build to complete",
+    "Kernel config issues with virtio drivers"
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "debug-001",
+  "name": "Fix Kernel Panic at Boot",
+  "description": "Debug and fix a system that kernel panics immediately at boot.",
+  "category": "debugging",
+  "difficulty": "medium",
+  "instructions": "A Buildroot system has been built but kernel panics at boot with:\n\"Kernel panic - not syncing: VFS: Unable to mount root fs\"\n\nThe build completed successfully but the system won't boot. Debug and fix it.\n\nPossible causes to investigate:\n1. Root filesystem type mismatch (ext2 vs ext4)\n2. Missing root= kernel parameter\n3. Missing filesystem driver in kernel\n4. Wrong device name (vda vs sda)\n\nYou have access to:\n- The build directory with all configs\n- The kernel config (.config)\n- The QEMU command being used\n\nFix the issue and verify the system boots.",
+  "expected_steps": 35,
+  "prerequisites": ["buildroot-001"],
+  "base_image": "ubuntu:22.04",
+  "required_packages": [
+    "qemu-system-x86", "file", "cpio", "gzip"
+  ],
+  "required_disk_gb": 5,
+  "required_ram_gb": 2,
+  "verification_steps": [
+    {
+      "type": "boot_test",
+      "description": "System boots without kernel panic",
+      "command": "timeout 60 qemu-system-x86_64 -M pc -kernel output/images/bzImage -drive file=output/images/rootfs.ext2,if=virtio,format=raw -append 'rootwait root=/dev/vda console=ttyS0' -nographic 2>&1 | grep -v 'panic' | grep 'login:'",
+      "expected_output": "login:",
+      "timeout_seconds": 90,
+      "boot_timeout_seconds": 60,
+      "weight": 2.0,
+      "required": true
+    }
+  ],
+  "success_artifacts": [],
+  "time_limit_minutes": 45,
+  "expected_build_minutes": 5,
+  "tags": ["debugging", "kernel-panic", "boot"],
+  "reference_docs": [
+    "https://wiki.archlinux.org/title/Kernel_panic"
+  ],
+  "common_failure_points": [
+    "Not checking kernel config for filesystem support",
+    "Not understanding root= parameter syntax",
+    "Not matching virtio device names"
+  ],
+  "version": "1.0.0"
+}
