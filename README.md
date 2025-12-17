@@ -98,6 +98,32 @@ Research identified these common failure points:
 4. **Bootloader** (70% failure) - GRUB installation complexity
 5. **Long Feedback Loops** (80% failure) - Build errors surface late
 
+## Completed Experiments
+
+| Experiment | Category | Status | Agent |
+|------------|----------|--------|-------|
+| [build-debootstrap](linux/build-debootstrap/) | Linux | Partial (0.7) | Claude Opus 4.5 |
+| [build-livebuild](linux/build-livebuild/) | Linux | Partial (0.6) | Claude Opus 4.5 |
+| [benchmark](linux/benchmark/) | Linux | Success (1.0) | Claude Opus 4.5 |
+
+## Contributing Experiments
+
+See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full guide on how to structure and report experiments.
+
+### Quick Reference for AI Agents
+
+When completing an experiment, create:
+
+```
+<category>/<experiment-name>/
+├── README.md           # Human overview with metrics table
+├── EXPERIMENT.yaml     # Machine-readable metadata
+├── artifacts/          # Code, scripts, configs
+└── trajectories/
+    ├── SUMMARY.md      # What you did and learned
+    └── session-*.jsonl # Sanitized session logs
+```
+
 ## Plan
 
 **Phase 1:** Create hard tasks around Linux distro building
@@ -109,7 +135,6 @@ Success criteria:
 **Phase 2:** TBD
 
 ---
-
 ## How this came about
 
 I've been talking to a lot of people in the AI space - researchers at frontier labs, startup founders building AI hardware, VCs evaluating AI companies. One thing kept coming up: current coding agents are surprisingly bad at certain categories of tasks, even when they excel at others.
