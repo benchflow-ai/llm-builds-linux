@@ -1,0 +1,10 @@
+#!/bin/sh
+mount -t proc none /proc
+mount -t sysfs none /sys
+mount -t devtmpfs none /dev
+
+echo "Welcome to Minimal Linux!"
+echo "Type 'poweroff' to shutdown."
+echo ""
+
+exec /bin/sh
