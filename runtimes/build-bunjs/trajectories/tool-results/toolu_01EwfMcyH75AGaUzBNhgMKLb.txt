@@ -1,0 +1,300 @@
+-- Looking for utimensat - found
+-- Looking for vfork
+-- Looking for vfork - found
+-- Looking for wcrtomb
+-- Looking for wcrtomb - found
+-- Looking for wcscmp
+-- Looking for wcscmp - found
+-- Looking for wcscpy
+-- Looking for wcscpy - found
+-- Looking for wcslen
+-- Looking for wcslen - found
+-- Looking for wctomb
+-- Looking for wctomb - found
+-- Looking for _fseeki64
+-- Looking for _fseeki64 - not found
+-- Looking for _get_timezone
+-- Looking for _get_timezone - not found
+-- Looking for ctime_s
+-- Looking for ctime_s - not found
+-- Looking for gmtime_s
+-- Looking for gmtime_s - not found
+-- Looking for localtime_s
+-- Looking for localtime_s - not found
+-- Looking for _mkgmtime
+-- Looking for _mkgmtime - not found
+-- Looking for cygwin_conv_path
+-- Looking for cygwin_conv_path - not found
+-- Looking for fseeko
+-- Looking for fseeko - found
+-- Looking for strerror_r
+-- Looking for strerror_r - found
+-- Looking for strftime
+-- Looking for strftime - found
+-- Looking for vprintf
+-- Looking for vprintf - found
+-- Looking for wmemcmp
+-- Looking for wmemcmp - found
+-- Looking for wmemcpy
+-- Looking for wmemcpy - found
+-- Looking for wmemmove
+-- Looking for wmemmove - found
+-- Performing Test HAVE_STRUCT_VFSCONF
+-- Performing Test HAVE_STRUCT_VFSCONF - Failed
+-- Performing Test HAVE_STRUCT_XVFSCONF
+-- Performing Test HAVE_STRUCT_XVFSCONF - Failed
+-- Performing Test HAVE_STRUCT_STATFS
+-- Performing Test HAVE_STRUCT_STATFS - Failed
+-- Performing Test HAVE_READDIR_R
+-- Performing Test HAVE_READDIR_R - Success
+-- Performing Test HAVE_DIRFD
+-- Performing Test HAVE_DIRFD - Success
+-- Performing Test HAVE_READLINKAT
+-- Performing Test HAVE_READLINKAT - Success
+-- Performing Test MAJOR_IN_MKDEV
+-- Performing Test MAJOR_IN_MKDEV - Failed
+-- Performing Test MAJOR_IN_SYSMACROS
+-- Performing Test MAJOR_IN_SYSMACROS - Success
+-- Looking for EFTYPE
+-- Looking for EFTYPE - not found
+-- Looking for EILSEQ
+-- Looking for EILSEQ - found
+-- Looking for D_MD_ORDER
+-- Looking for D_MD_ORDER - not found
+-- Looking for INT32_MAX
+-- Looking for INT32_MAX - found
+-- Looking for INT32_MIN
+-- Looking for INT32_MIN - found
+-- Looking for INT64_MAX
+-- Looking for INT64_MAX - found
+-- Looking for INT64_MIN
+-- Looking for INT64_MIN - found
+-- Looking for INTMAX_MAX
+-- Looking for INTMAX_MAX - found
+-- Looking for INTMAX_MIN
+-- Looking for INTMAX_MIN - found
+-- Looking for UINT32_MAX
+-- Looking for UINT32_MAX - found
+-- Looking for UINT64_MAX
+-- Looking for UINT64_MAX - found
+-- Looking for UINTMAX_MAX
+-- Looking for UINTMAX_MAX - found
+-- Looking for SIZE_MAX
+-- Looking for SIZE_MAX - found
+-- Looking for SSIZE_MAX
+-- Looking for SSIZE_MAX - found
+-- Performing Test HAVE_STRUCT_TM_TM_GMTOFF
+-- Performing Test HAVE_STRUCT_TM_TM_GMTOFF - Success
+-- Performing Test HAVE_STRUCT_TM___TM_GMTOFF
+-- Performing Test HAVE_STRUCT_TM___TM_GMTOFF - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_BIRTHTIME
+-- Performing Test HAVE_STRUCT_STAT_ST_BIRTHTIME - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC
+-- Performing Test HAVE_STRUCT_STAT_ST_BIRTHTIMESPEC_TV_NSEC - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIMESPEC_TV_NSEC - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIM_TV_NSEC - Success
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIME_N
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIME_N - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_UMTIME
+-- Performing Test HAVE_STRUCT_STAT_ST_UMTIME - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIME_USEC
+-- Performing Test HAVE_STRUCT_STAT_ST_MTIME_USEC - Failed
+-- Performing Test HAVE_STRUCT_STAT_ST_BLKSIZE
+-- Performing Test HAVE_STRUCT_STAT_ST_BLKSIZE - Success
+-- Performing Test HAVE_STRUCT_STAT_ST_FLAGS
+-- Performing Test HAVE_STRUCT_STAT_ST_FLAGS - Failed
+-- Performing Test HAVE_STRUCT_STATVFS_F_IOSIZE
+-- Performing Test HAVE_STRUCT_STATVFS_F_IOSIZE - Failed
+-- Looking for stddef.h
+-- Looking for stddef.h - found
+-- Check size of short
+-- Check size of short - done
+-- Check size of int
+-- Check size of int - done
+-- Check size of long
+-- Check size of long - done
+-- Check size of long long
+-- Check size of long long - done
+-- Check size of unsigned short
+-- Check size of unsigned short - done
+-- Check size of unsigned
+-- Check size of unsigned - done
+-- Check size of unsigned long
+-- Check size of unsigned long - done
+-- Check size of unsigned long long
+-- Check size of unsigned long long - done
+-- Check size of __int64
+-- Check size of __int64 - failed
+-- Check size of unsigned __int64
+-- Check size of unsigned __int64 - failed
+-- Check size of int16_t
+-- Check size of int16_t - done
+-- Check size of int32_t
+-- Check size of int32_t - done
+-- Check size of int64_t
+-- Check size of int64_t - done
+-- Check size of intmax_t
+-- Check size of intmax_t - done
+-- Check size of uint8_t
+-- Check size of uint8_t - done
+-- Check size of uint16_t
+-- Check size of uint16_t - done
+-- Check size of uint32_t
+-- Check size of uint32_t - done
+-- Check size of uint64_t
+-- Check size of uint64_t - done
+-- Check size of uintmax_t
+-- Check size of uintmax_t - done
+-- Check size of dev_t
+-- Check size of dev_t - done
+-- Check size of gid_t
+-- Check size of gid_t - done
+-- Check size of id_t
+-- Check size of id_t - done
+-- Check size of mode_t
+-- Check size of mode_t - done
+-- Check size of off_t
+-- Check size of off_t - done
+-- Check size of size_t
+-- Check size of size_t - done
+-- Check size of ssize_t
+-- Check size of ssize_t - done
+-- Check size of uid_t
+-- Check size of uid_t - done
+-- Check size of pid_t
+-- Check size of pid_t - done
+-- Check size of intptr_t
+-- Check size of intptr_t - done
+-- Check size of uintptr_t
+-- Check size of uintptr_t - done
+-- Check size of wchar_t
+-- Check size of wchar_t - done
+-- Checking _FILE_OFFSET_BITS for large files
+-- Checking _FILE_OFFSET_BITS for large files - not needed
+-- Looking for setxattr in attr
+-- Looking for setxattr in attr - not found
+-- Looking for setxattr in gnu
+-- Looking for setxattr in gnu - not found
+-- Looking for EXTATTR_NAMESPACE_USER
+-- Looking for EXTATTR_NAMESPACE_USER - not found
+-- Looking for XATTR_NOFOLLOW
+-- Looking for XATTR_NOFOLLOW - not found
+-- Looking for fgetxattr
+-- Looking for fgetxattr - found
+-- Looking for flistxattr
+-- Looking for flistxattr - found
+-- Looking for fsetxattr
+-- Looking for fsetxattr - found
+-- Looking for getxattr
+-- Looking for getxattr - found
+-- Looking for lgetxattr
+-- Looking for lgetxattr - found
+-- Looking for listxattr
+-- Looking for listxattr - found
+-- Looking for llistxattr
+-- Looking for llistxattr - found
+-- Looking for lsetxattr
+-- Looking for lsetxattr - found
+-- Extended attributes support: Linux
+-- Looking for acl
+-- Looking for acl - not found
+-- Looking for facl
+-- Looking for facl - not found
+-- Looking for acl_get_file in acl
+-- Looking for acl_get_file in acl - not found
+-- Performing Test HAVE_ACL_T
+-- Performing Test HAVE_ACL_T - Failed
+-- Performing Test HAVE_ACL_ENTRY_T
+-- Performing Test HAVE_ACL_ENTRY_T - Failed
+-- Performing Test HAVE_ACL_PERMSET_T
+-- Performing Test HAVE_ACL_PERMSET_T - Failed
+-- Performing Test HAVE_ACL_TAG_T
+-- Performing Test HAVE_ACL_TAG_T - Failed
+-- Looking for richacl_get_file in richacl
+-- Looking for richacl_get_file in richacl - not found
+-- Performing Test HAVE_STRUCT_RICHACE
+-- Performing Test HAVE_STRUCT_RICHACE - Failed
+-- Performing Test HAVE_STRUCT_RICHACL
+-- Performing Test HAVE_STRUCT_RICHACL - Failed
+-- ACL support: none
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBC
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBC
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBMD -- not found
+-- Performing Test HAVE_VISIBILITY_ATTR
+-- Performing Test HAVE_VISIBILITY_ATTR - Success
+-- Configuring done (227.1s)
+-- Generating done (0.1s)
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_CXX_FLAGS
+    CMAKE_LINKER_FLAGS
+    ENABLE_LibGCC
+    LLD_PROGRAM
+
+[0m
+-- Build files have been written to: /build/bun/build/debug/libarchive
+[97/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/BakeProduction.cpp.o
+[31mFAILED: [0mbun-zig.o /build/bun/build/debug/bun-zig.o 
+cd /build/bun && /build/bun/vendor/zig/zig build obj --cache-dir /build/bun/build/debug/cache/zig/local --global-cache-dir /build/bun/build/debug/cache/zig/global --zig-lib-dir /build/bun/vendor/zig/lib --prefix /build/bun/build/debug -Dobj_format=obj -Dtarget=aarch64-linux-gnu -Doptimize=Debug -Dcpu=native -Denable_logs=true -Denable_asan=true -Denable_fuzzilli=false -Denable_valgrind=false -Duse_mimalloc=true -Dllvm_codegen_threads=0 -Dversion=1.3.6 -Dreported_nodejs_version=24.3.0 -Dcanary=1 -Dcodegen_path=/build/bun/build/debug/codegen -Dcodegen_embed=false --prominent-compile-errors --summary all -Dsha=e79b512a9d29e05e894224217ccbb8ff5f4094f6
+[99/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunCommonStrings.cpp.o
+[100/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/BakeGlobalObject.cpp.o
+[101/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunCPUProfiler.cpp.o
+[102/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunGCOutputConstraint.cpp.o
+[103/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunClientData.cpp.o
+[104/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/AsyncContextFrame.cpp.o
+[105/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunDebugger.cpp.o
+[106/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/BakeSourceProvider.cpp.o
+[107/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/DevServerSourceProvider.cpp.o
+[108/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/blob.cpp.o
+[109/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BakeAdditionsToGlobalObject.cpp.o
+[110/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/AsymmetricKeyValue.cpp.o
+[111/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/bindings.cpp.o
+ninja: build stopped: subcommand failed.
+  cmake took 6.08 minutes
+  Command exited: code 1
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1

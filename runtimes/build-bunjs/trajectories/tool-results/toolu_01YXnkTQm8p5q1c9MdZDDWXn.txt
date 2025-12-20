@@ -1,0 +1,19 @@
+# Linux From Scratch Overview
+
+**What It Is**
+
+Linux From Scratch (LFS) is a project offering detailed instructions for constructing a personalized Linux system entirely from source code. As stated on their website, "LFS is a project that provides you with step-by-step instructions for building your own custom Linux system, entirely from source code."
+
+**How It Works**
+
+The project operates through a structured ecosystem of interconnected subprojects, each addressing different aspects of system building:
+
+- **LFS** serves as the foundational guide covering core system construction
+- **BLFS** (Beyond Linux From Scratch) extends the basic installation with additional software and customization options
+- **ALFS** provides automation tools to streamline the building process
+- Specialized variants like **MLFS** (for 32-bit compatibility), **GLFS** (for gaming), and **SLFS** (supplemental packages) cater to specific needs
+- Supporting resources include a hints collection, patch repository, and documentation
+
+**General Approach**
+
+The methodology emphasizes hands-on learning and customization. Rather than using pre-compiled packages, builders compile every component from source, giving them complete control over their system's configuration and contents. This educational approach allows users to understand their operating system's inner workings while creating a tailored installation suited to their specific requirements.

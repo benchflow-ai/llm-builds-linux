@@ -1,0 +1,13 @@
+# Information About Building Bun
+
+Based on my review of the provided web page content, **there is no information about building Bun, compilation requirements, challenges, or technical details related to Bun**.
+
+The page contains details about the **Linux Plumbers Conference 2025**, specifically a Birds of a Feather (BoF) session focused on **Syzbot** — a continuous kernel fuzzing system for uncovering Linux kernel vulnerabilities. 
+
+The session discusses:
+- Syzbot's automated bug reporting capabilities
+- Debugging kernel issues
+- Maintainer workflows for handling syzbot reports
+- Contributing to syzkaller (the fuzzing framework)
+
+Bun is not mentioned anywhere on this page.

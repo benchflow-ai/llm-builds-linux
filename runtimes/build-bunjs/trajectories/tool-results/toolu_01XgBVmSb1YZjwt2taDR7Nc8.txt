@@ -1,0 +1,71 @@
+Web search results for query: "building Bun JavaScript runtime from source compilation guide 2025"
+
+Links: [{"title":"Bun — A fast all-in-one JavaScript runtime","url":"https://bun.com"},{"title":"GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one","url":"https://github.com/oven-sh/bun"},{"title":"Single-file executable - Bun","url":"https://bun.com/docs/bundler/executables"},{"title":"Getting Started with Bun.js: A Quick Guide | Last9","url":"https://last9.io/blog/getting-started-with-bun-js/"},{"title":"What Is Bun JS? Complete Guide for 2025 | Bun vs Node | Ultra-Fast JavaScript Runtime","url":"https://www.techquestworld.com/blog/what-is-bun-js-complete-guide-2025"},{"title":"Bun JS: The Blazing-Fast Node.js Alternative You Need to Try in 2025","url":"https://blog.bytescrum.com/bun-js-the-blazing-fast-nodejs-alternative-you-need-to-try-in-2025"},{"title":"Bun (software) - Wikipedia","url":"https://en.wikipedia.org/wiki/Bun_(software)"},{"title":"Bun 1.3: The JavaScript Runtime Dominating the Market in 2025","url":"https://jeffbruchado.com.br/en/blog/bun-1-3-javascript-runtime-performance-node-deno"},{"title":"Experimenting Bun JavaScript Runtime with Data Library TypeScript | Devportal","url":"https://developers.lseg.com/en/article-catalog/article/experimenting-bun-javascript-runtime-with-data-library-typescrip"},{"title":"Node.js, Deno, Bun in 2025: Choosing Your JavaScript Runtime - DEV Community","url":"https://dev.to/dataformathub/nodejs-deno-bun-in-2025-choosing-your-javascript-runtime-41fh"}]
+
+The search results provide general information about Bun but don't contain specific details about building Bun from source. Let me search more specifically for the compilation guide.
+
+Links: [{"title":"Contributing - Bun","url":"https://bun.com/docs/project/contributing"},{"title":"Contributing – Project | Bun Docs","url":"https://bun.sh/docs/project/contributing"},{"title":"GitHub - oven-sh/bun: Incredibly fast JavaScript runtime, bundler, test runner, and package manager – all in one","url":"https://github.com/oven-sh/bun"},{"title":"Using Bun - Expo Documentation","url":"https://docs.expo.dev/guides/using-bun/"},{"title":"How do I build Bun for production · oven-sh/bun · Discussion #2354","url":"https://github.com/oven-sh/bun/discussions/2354"},{"title":"Bun build process | Zerops","url":"https://docs.zerops.io/bun/how-to/build-process"},{"title":"Bun — A fast all-in-one JavaScript runtime","url":"https://bun.sh/"},{"title":"Building your first Bun Project. How to install Bun and build your first… | by Louis Rosevi | Medium","url":"https://medium.com/@louis.rosevi/building-your-first-bun-project-a4385c3f6450"},{"title":"Should You Use Bun for Your Projects?","url":"https://deliciousbrains.com/a-short-guide-to-using-bun/"},{"title":"Bun by oven-sh | Buildkite Examples | Buildkite","url":"https://buildkite.com/resources/examples/oven-sh/bun/"}]
+
+Based on my search results, here's what I found about building the Bun JavaScript runtime from source:
+
+## Building Bun from Source - Compilation Guide
+
+### Overview
+Bun is written in Zig and powered by JavaScriptCore under the hood, dramatically reducing startup times and memory usage.
+
+### Prerequisites and System Requirements
+
+Configuring a development environment for Bun can take 10-30 minutes depending on your internet connection and computer speed. You will need ~10GB of free disk space for the repository and build artifacts.
+
+### Installing Dependencies
+
+Using your system's package manager, install Bun's dependencies:
+
+**macOS:**
+```bash
+brew install automake ccache cmake coreutils gnu-sed go icu4c libiconv libtool ninja pkg-config rust ruby
+```
+
+**Ubuntu/Debian:**
+```bash
+sudo apt install curl wget lsb-release software-properties-common cargo ccache cmake git golang libtool ninja-build pkg-config rustc ruby-full xz-utils
+```
+
+**Arch Linux:**
+```bash
+sudo pacman -S base-devel ccache cmake git go libiconv libtool make ninja pkg-config python rust sed unzip ruby
+```
+
+**Fedora:**
+```bash
+sudo dnf install cargo ccache cmake git golang libtool ninja-build pkg-config rustc ruby libatomic-static libstdc++-static sed unzip which libicu-devel 'perl(Math::BigInt)'
+```
+
+### LLVM Requirement
+Bun requires LLVM 19 (clang is part of LLVM). This version requirement is to match WebKit (precompiled), as mismatching versions will cause memory allocation failures at runtime.
+
+### Using Nix (Alternative)
+A Nix flake is provided as an alternative to manual dependency installation. This provides all dependencies in an isolated, reproducible environment without requiring sudo.
+
+### Build Cache with sccache
+The version in your package manager may not have S3 support. You can install sccache with S3 support via `cargo install sccache --features=s3`. Build scripts will automatically detect and use sccache with the shared S3 cache.
+
+### Building Bun
+The `bd` package.json script compiles and runs a debug build of Bun, only printing the output of the build process if it fails. Bun generally takes about 2.5 minutes to compile a debug build when there are Zig changes.
+
+### Important Note on Bootstrapping
+It's not actually possible to build Bun if you don't possess a bun binary already, because it is used in the build process for code generation.(no content)You'll need Zig to compile, then JavaScriptCore and all its dependencies ready on the system. If you want to follow all the steps yourself, check how the dev container is built in the Dockerfile.devcontainer file in the repository.
+
+### Building WebKit/JSC Locally
+WebKit is not cloned by default (to save time and disk space). To clone and build WebKit locally, you need to clone the WebKit repository and check out the specific commit hash specified in the cmake configuration.
+
+### Debug vs Release Builds
+AddressSanitizer helps find memory issues, and is enabled by default in debug builds of Bun on Linux and macOS. This includes the Zig code and all dependencies. To build a release build with Address Sanitizer, run: `bun run build:release:asan`.
+
+### Testing PR Builds
+To save you time spent building a release build locally, Bun provides a way to run release builds from pull requests. This is useful for manually testing changes in a release build before they are merged. You can use the bun-pr npm package via `bunx bun-pr <pr-number>`.
+
+For the most up-to-date and complete instructions, refer to the official contributing documentation at https://bun.sh/docs/project/contributing or https://bun.com/docs/project/contributing.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.

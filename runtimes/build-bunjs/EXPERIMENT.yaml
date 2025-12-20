@@ -1,0 +1,78 @@
+name: "Building Bun from Source"
+id: build-bunjs
+category: build
+status: partial
+
+agent:
+  model: claude-opus-4-5
+  sessions: 1
+  total_duration_hours: 0.75
+  active_duration_hours: 0.5
+
+task:
+  description: "Build the Bun JavaScript/TypeScript runtime from source"
+  initial_prompt: "Build Bun from source, experimenting with the llm-builds-linux benchmark approach"
+  difficulty: hard
+  estimated_steps: 100
+
+results:
+  success: false
+  partial_score: 0.6
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+  key_metrics:
+    build_steps_completed: 205
+    build_steps_total: 632
+    completion_percentage: 32
+    dependencies_resolved: 20
+    js_modules_bundled: 136
+    docker_image_size_gb: 8
+    cmake_configure_success: true
+    cpp_compilation_started: true
+    zig_compilation_failed: true
+
+# No cost data available for this experiment
+cost: null
+
+human_intervention:
+  count: 0
+  critical: false
+  details: []
+
+findings:
+  successes:
+    - "Successfully set up Docker build environment with LLVM 19, Rust 1.92, Go 1.22, CMake, Ninja"
+    - "Resolved Cargo.lock v4 version issue by switching from apt Rust to rustup"
+    - "CMake configuration completed successfully with 632 build targets"
+    - "Downloaded and built 20+ external dependencies (lolhtml, brotli, zstd, sqlite, boringssl, c-ares, libarchive)"
+    - "JavaScript module bundling completed (1780kb, 136 modules for bake runtime)"
+    - "C/C++ compilation progressed to step 205/632 (~32%)"
+    - "All Rust dependencies compiled successfully with nightly-2025-12-10 toolchain"
+  failures:
+    - "Zig compiler (0.15.2) failed with 'command terminated unexpectedly'"
+    - "Target aarch64-linux-gnu.2.26 with -mcpu cortex_a35 causes crash"
+    - "Error occurs during 'zig build-obj' for bun-debug target with AddressSanitizer"
+    - "Root cause: Zig LLVM backend issues on Apple Silicon Docker (ARM64)"
+  lessons:
+    - "Rust version from apt (1.75) is too old for Cargo.lock v4 - must use rustup (1.78+)"
+    - "Zig build fails on ARM64 Docker - may need native x86_64 or native ARM64 hardware"
+    - "Building Bun requires Bun itself (bootstrapping problem - cannot build without existing binary)"
+    - "LLVM version must exactly match WebKit precompiled version (LLVM 19)"
+    - "Build has 632 steps with complex parallelism - Zig, C++, Rust compile simultaneously"
+    - "Build time to failure: ~7 minutes (CMake config + dependency download + partial compilation)"
+    - "AddressSanitizer is enabled by default in debug builds and may contribute to instability"
+
+references:
+  docs:
+    - "https://bun.sh/docs/project/contributing"
+    - "https://github.com/oven-sh/bun"
+
+tags:
+  - javascript-runtime
+  - zig
+  - llvm
+  - docker
+  - arm64
+  - webkit
+  - bootstrapping

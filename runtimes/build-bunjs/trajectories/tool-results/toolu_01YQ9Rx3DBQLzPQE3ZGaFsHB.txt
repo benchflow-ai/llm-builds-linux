@@ -1,0 +1,267 @@
+     1→# llm-builds-linux
+     2→
+     3→Can LLM agents build Linux distros? How far can they go?
+     4→
+     5→## Quick Start
+     6→
+     7→```bash
+     8→# List all available benchmark tasks
+     9→python cli.py list
+    10→
+    11→# Show details for a specific task
+    12→python cli.py show buildroot-001
+    13→
+    14→# Export all tasks to JSON
+    15→python cli.py export tasks.json
+    16→```
+    17→
+    18→## Why This Matters
+    19→
+    20→Many AI hardware founders told me that Claude Code currently fails very hard at building Linux distros for them, despite doing everything else pretty decently. They need to do it on a daily basis because it's an important part of their product.
+    21→
+    22→From talks with frontier lab employees, startup founders, VCs, and researchers - there's a general sense that coding agents haven't cracked these kinds of tasks yet:
+    23→- Long horizon tasks (100+ steps)
+    24→- E2E tasks with complex feedback loops
+    25→- Tasks requiring deep system-level understanding
+    26→
+    27→## Current Tasks (11 total)
+    28→
+    29→### Tool-Assisted (Buildroot)
+    30→| Task ID | Name | Difficulty | Steps |
+    31→|---------|------|------------|-------|
+    32→| buildroot-001 | Minimal QEMU System | Easy | 25 |
+    33→| buildroot-002 | Networking Support | Medium | 40 |
+    34→| buildroot-003 | Custom Package | Hard | 60 |
+    35→
+    36→### Tool-Assisted (Debootstrap)
+    37→| Task ID | Name | Difficulty | Steps |
+    38→|---------|------|------------|-------|
+    39→| debootstrap-001 | Minimal Debian Rootfs | Easy | 20 |
+    40→| debootstrap-002 | Bootable Disk Image | Medium | 50 |
+    41→| debootstrap-003 | Debian Live ISO | Hard | 80 |
+    42→| debootstrap-004 | Ubuntu Minimal Server | Medium | 55 |
+    43→
+    44→### Debugging
+    45→| Task ID | Name | Difficulty | Steps |
+    46→|---------|------|------------|-------|
+    47→| debug-001 | Fix Kernel Panic | Medium | 35 |
+    48→| debug-002 | Fix Missing Init | Medium | 40 |
+    49→| debug-003 | Fix Network Failure | Hard | 50 |
+    50→| debug-004 | Fix Build Failure | Hard | 45 |
+    51→
+    52→## Project Structure
+    53→
+    54→```
+    55→harare/
+    56→├── src/
+    57→│   ├── task.py          # Task and result dataclasses
+    58→│   ├── runner.py        # Task runner and verifier
+    59→│   └── tasks/           # Task definitions (Python)
+    60→├── tasks/               # Task definitions (JSON)
+    61→├── environments/        # Docker environments
+    62→│   ├── buildroot/
+    63→│   └── debootstrap/
+    64→├── cli.py              # Command-line interface
+    65→├── BUILDING_LINUX_GUIDE.md   # Detailed build guides
+    66→└── TASK_SPECIFICATION.md     # Full specification docs
+    67→```
+    68→
+    69→## Key Documentation
+    70→
+    71→- **[BUILDING_LINUX_GUIDE.md](./BUILDING_LINUX_GUIDE.md)** - Complete guide to building Linux systems with Buildroot, Debootstrap, and Alpine. Includes exact commands, expected outputs, build times, and common failure points.
+    72→
+    73→- **[TASK_SPECIFICATION.md](./TASK_SPECIFICATION.md)** - Full specification format for benchmark tasks, including JSON schema, verification methods, and scoring algorithms.
+    74→
+    75→## Verification Methods
+    76→
+    77→Tasks use multiple verification methods:
+    78→- **boot_test** - Boot in QEMU and check for login prompt
+    79→- **file_check** - Verify expected files exist
+    80→- **size_check** - Check image size constraints
+    81→- **command_output** - Run commands and check output
+    82→- **checksum** - Verify file integrity
+    83→
+    84→## Difficulty Levels
+    85→
+    86→- **Easy** (~50% agent success): 10-25 steps, tool-assisted builds
+    87→- **Medium** (~20% agent success): 30-55 steps, bootloader/config work
+    88→- **Hard** (~5% agent success): 50-80 steps, debugging, ISOs
+    89→- **Extreme** (<1% agent success): 100+ steps, LFS-style
+    90→
+    91→## Where Agents Fail
+    92→
+    93→Research identified these common failure points:
+    94→
+    95→1. **Environment Setup** (40% failure) - Missing dependencies
+    96→2. **Chroot Management** (60% failure) - DNS, mounts, cleanup
+    97→3. **Loop Devices** (50% failure) - Partition scanning, cleanup
+    98→4. **Bootloader** (70% failure) - GRUB installation complexity
+    99→5. **Long Feedback Loops** (80% failure) - Build errors surface late
+   100→
+   101→## Completed Experiments
+   102→
+   103→| Experiment | Category | Status | Agent |
+   104→|------------|----------|--------|-------|
+   105→| [build-debootstrap](linux/build-debootstrap/) | Linux | Partial (0.7) | Claude Opus 4.5 |
+   106→| [build-livebuild](linux/build-livebuild/) | Linux | Partial (0.6) | Claude Opus 4.5 |
+   107→| [benchmark](linux/benchmark/) | Linux | Success (1.0) | Claude Opus 4.5 |
+   108→
+   109→## Contributing Experiments
+   110→
+   111→See **[CONTRIBUTING.md](CONTRIBUTING.md)** for the full guide on how to structure and report experiments.
+   112→
+   113→### Quick Reference for AI Agents
+   114→
+   115→When completing an experiment, create:
+   116→
+   117→```
+   118→<category>/<experiment-name>/
+   119→├── README.md           # Human overview with metrics table
+   120→├── EXPERIMENT.yaml     # Machine-readable metadata
+   121→├── artifacts/          # Code, scripts, configs
+   122→└── trajectories/
+   123→    ├── SUMMARY.md      # What you did and learned
+   124→    └── session-*.jsonl # Sanitized session logs
+   125→```
+   126→
+   127→## Plan
+   128→
+   129→**Phase 1:** Create hard tasks around Linux distro building
+   130→
+   131→Success criteria:
+   132→- At least a dozen environments / tasks
+   133→- Tested how far different models can go
+   134→
+   135→**Phase 2:** TBD
+   136→
+   137→---
+   138→## How this came about
+   139→
+   140→I've been talking to a lot of people in the AI space - researchers at frontier labs, startup founders building AI hardware, VCs evaluating AI companies. One thing kept coming up: current coding agents are surprisingly bad at certain categories of tasks, even when they excel at others.
+   141→
+   142→The Linux distro building problem came from AI hardware founders who deal with this daily. They use Claude Code for most of their coding work and it does well, but when it comes to building custom Linux images for their hardware, it falls apart. This isn't a niche use case for them - it's core to shipping their product.
+   143→
+   144→What makes this interesting as a benchmark is that it naturally requires long-horizon planning (easily 100+ steps), deep system understanding (kernel, bootloaders, package managers, init systems), and dealing with long feedback loops where errors are cryptic and often don't surface until boot time. You can't fake your way through it.
+   145→
+   146→I'm starting this project to systematically test how far different LLM agents can actually go with these tasks. The goal is to build a set of reproducible environments and tasks, run different models through them, and document where they succeed and fail.
+   147→
+   148→---
+   149→
+   150→## Broader vision
+   151→
+   152→This project is part of a larger effort to find hard tasks for coding agents. The full notes are in [this Google Doc](https://docs.google.com/document/d/1B1wgmJ1K4CZNMg7VWtUs-QsPAfCJ1mq7ggKO-lAby3U/edit).
+   153→
+   154→Some related ideas we're exploring:
+   155→- 100 tasks that take agents 100 steps to solve (coding mostly)
+   156→- Can agents build Chrome (and can they do follow up tasks)
+   157→- Can agents build their own bun / rust cargo / openshift / kubernetes etc.
+   158→- Given any repo / open-source repo and relevant keys / env vars, how far can agents go
+   159→- Can agents build their own mobile OS
+   160→- Inspection on which model is good at what (e.g. some models better at python, others at design)
+   161→
+   162→Related work: [LLM Speedrunner](https://github.com/facebookresearch/llm-speedrunner) - a benchmark that lets AI build entire models.
+   163→
+   164→---
+   165→
+   166→## Experiment: Building Chromium
+   167→
+   168→### Status: BUILD SUCCESSFUL
+   169→
+   170→**Date:** 2025-12-15
+   171→
+   172→### Result
+   173→
+   174→Successfully built Chromium from source on macOS ARM64 (Apple Silicon).
+   175→
+   176→| Metric | Value |
+   177→|--------|-------|
+   178→| Source size | ~35 GB |
+   179→| Build output size | ~8 GB |
+   180→| Build actions | ~118,000 |
+   181→| Build time | ~2 hours |
+   182→| Final binary | `chromium/src/out/Default/Chromium.app` |
+   183→
+   184→### Steps completed:
+   185→
+   186→1. **Set up depot_tools** (Google's build toolchain)
+   187→   - Cloned from `https://chromium.googlesource.com/chromium/tools/depot_tools.git`
+   188→
+   189→2. **Fetched Chromium source** (~35GB)
+   190→   - Used `fetch --no-history chromium` to skip git history
+   191→   - Source located at `chromium/src/`
+   192→
+   193→3. **Created build configuration** (`chromium/src/out/Default/args.gn`)
+   194→   ```
+   195→   is_debug = false
+   196→   is_component_build = true
+   197→   symbol_level = 0
+   198→   angle_enable_metal = false
+   199→   ```
+   200→
+   201→4. **Created automated build script** (`build_chromium.sh`)
+   202→
+   203→5. **Built Chromium** using `autoninja -C out/Default chrome`
+   204→
+   205→### Prerequisites for macOS
+   206→
+   207→Building Chromium for macOS requires full **Xcode** (not just Command Line Tools):
+   208→
+   209→1. Install Xcode from App Store (~12GB)
+   210→2. Run: `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`
+   211→3. Accept license: `sudo xcodebuild -license accept`
+   212→
+   213→### How to reproduce
+   214→
+   215→```bash
+   216→# Clone depot_tools
+   217→git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+   218→export PATH="$PWD/depot_tools:$PATH"
+   219→
+   220→# Fetch Chromium source (takes 30+ mins)
+   221→mkdir chromium && cd chromium
+   222→fetch --no-history chromium
+   223→
+   224→# Configure build
+   225→cd src
+   226→mkdir -p out/Default
+   227→cat > out/Default/args.gn << 'EOF'
+   228→is_debug = false
+   229→is_component_build = true
+   230→symbol_level = 0
+   231→angle_enable_metal = false
+   232→EOF
+   233→
+   234→# Generate build files
+   235→gn gen out/Default
+   236→
+   237→# Build (takes 2+ hours)
+   238→autoninja -C out/Default chrome
+   239→
+   240→# Run
+   241→open out/Default/Chromium.app
+   242→```
+   243→
+   244→### Key learnings for agent evaluation
+   245→
+   246→1. **Environment dependencies are a major blocker** - Chromium requires specific tools (Xcode, specific SDK versions) that agents cannot install on their own.
+   247→
+   248→2. **The fetch step is ~30 mins to hours** - Tests need to account for this.
+   249→
+   250→3. **~45GB disk space needed** - Source (~35GB) + build artifacts (~8GB for component build).
+   251→
+   252→4. **Build time: ~2 hours** on Apple Silicon Mac.
+   253→
+   254→5. **Agent successfully monitored long-running build** - The agent was able to track progress and report completion.
+   255→
+   256→### Complexity assessment for agent benchmark
+   257→
+   258→- **Steps involved:** ~50-100+ for a complete build
+   259→- **Types of operations:** git operations, config file generation, dependency management, compilation
+   260→- **Failure modes:** SDK mismatches, missing dependencies, config errors, compilation errors
+   261→- **Feedback loop:** Long - errors may not appear until hours into the build
+   262→- **Agent role:** Setup, configuration, monitoring (compilation itself is automated)
+   263→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

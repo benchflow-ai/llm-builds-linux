@@ -1,0 +1,100 @@
+#10 8.074 info: default host triple is aarch64-unknown-linux-gnu
+#10 8.074 info: syncing channel updates for 'stable-aarch64-unknown-linux-gnu'
+#10 8.830 info: latest update on 2025-12-11, rust version 1.92.0 (ded5c06cf 2025-12-08)
+#10 8.830 info: downloading component 'cargo'
+#10 12.01 info: downloading component 'clippy'
+#10 13.51 info: downloading component 'rust-docs'
+#10 18.26 info: downloading component 'rust-std'
+#10 24.25 info: downloading component 'rustc'
+#10 35.36 info: downloading component 'rustfmt'
+#10 36.47 info: installing component 'cargo'
+#10 37.06 info: installing component 'clippy'
+#10 37.34 info: installing component 'rust-docs'
+#10 41.88 info: installing component 'rust-std'
+#10 44.32 info: installing component 'rustc'
+#10 48.42 info: installing component 'rustfmt'
+#10 48.67 
+#10 48.67 info: default toolchain set to 'stable-aarch64-unknown-linux-gnu'
+#10 48.68   stable-aarch64-unknown-linux-gnu installed - rustc 1.92.0 (ded5c06cf 2025-12-08)
+#10 48.68 
+#10 48.68 
+#10 48.68 Rust is installed now. Great!
+#10 48.68 
+#10 48.68 To get started you may need to restart your current shell.
+#10 48.68 This would reload your PATH environment variable to include
+#10 48.68 Cargo's bin directory ($HOME/.cargo/bin).
+#10 48.68 
+#10 48.68 To configure your current shell, you need to source
+#10 48.68 the corresponding env file under $HOME/.cargo.
+#10 48.68 
+#10 48.68 This is usually done by running one of the following (note the leading DOT):
+#10 48.68 . "$HOME/.cargo/env"            # For sh/bash/zsh/ash/dash/pdksh
+#10 48.68 source "$HOME/.cargo/env.fish"  # For fish
+#10 48.68 source $"($nu.home-path)/.cargo/env.nu"  # For nushell
+#10 DONE 49.8s
+
+#11 [ 6/13] RUN curl -fsSL https://bun.com/install | bash
+#11 0.634 #=#=#                                                                          ##O#-#                                                                         ##O=#  #                                                                       #=#=-#  #                                                                                                                                                 0.3%                                                                           0.8%                                                                           1.3%#                                                                          1.7%#                                                                          2.2%##                                                                         2.9%##                                                                         3.5%##                                                                         4.0%###                                                                        4.5%###                                                                        5.3%####                                                                       5.9%####                                                                       6.7%#####                                                                      7.5%#####                                                                      8.1%######                                                                     8.8%######                                                                     9.4%#######                                                                   10.2%########                                                                  11.2%########                                                                  12.3%#########                                                                 13.4%##########                                                                14.6%###########                                                               15.7%###########                                                               16.6%############                                                              17.6%#############                                                             18.7%#############                                                             19.4%##############                                                            20.5%###############                                                           21.5%################                                                          22.8%#################                                                         24.2%##################                                                        25.3%##################                                                        26.3%###################                                                       27.6%####################                                                      28.8%#####################                                                     30.2%######################                                                    31.4%#######################                                                   32.6%########################                                                  34.1%#########################                                                 35.4%##########################                                                36.6%###########################                                               38.1%############################                                              39.5%#############################                                             41.1%##############################                                            42.7%################################                                          44.5%################################                                          45.8%#################################                                         47.2%###################################                                       48.9%####################################                                      50.7%#####################################                                     52.5%#######################################                                   54.2%########################################                                  55.9%#########################################                                 57.3%##########################################                                58.6%###########################################                               60.0%############################################                              61.7%#############################################                             63.8%###############################################                           65.7%################################################                          67.6%##################################################                        69.6%###################################################                       71.5%#####################################################                     73.8%######################################################                    75.6%#######################################################                   77.5%#########################################################                 79.5%##########################################################                81.5%############################################################              83.6%#############################################################             85.4%##############################################################            86.8%################################################################          89.0%#################################################################         91.1%##################################################################        93.0%####################################################################      95.3%######################################################################    97.6%#######################################################################   99.8%######################################################################## 100.0%
+#11 9.510 bun was installed successfully to ~/.bun/bin/bun 
+#11 9.511 
+#11 9.594 Added "~/.bun/bin" to $PATH in "~/.bashrc" 
+#11 9.594 
+#11 9.594 To get started, run: 
+#11 9.594 
+#11 9.594   source /root/.bashrc 
+#11 9.594   bun --help 
+#11 DONE 10.4s
+
+#12 [ 7/13] WORKDIR /build
+#12 DONE 0.1s
+
+#13 [ 8/13] RUN git clone https://github.com/oven-sh/bun.git bun
+#13 0.123 Cloning into 'bun'...
+#13 29.24 Updating files:  17% (2102/12163)Updating files:  18% (2190/12163)Updating files:  19% (2311/12163)Updating files:  20% (2433/12163)Updating files:  21% (2555/12163)Updating files:  22% (2676/12163)Updating files:  23% (2798/12163)Updating files:  24% (2920/12163)Updating files:  25% (3041/12163)Updating files:  26% (3163/12163)Updating files:  27% (3285/12163)Updating files:  28% (3406/12163)Updating files:  29% (3528/12163)Updating files:  30% (3649/12163)Updating files:  31% (3771/12163)Updating files:  32% (3893/12163)Updating files:  33% (4014/12163)Updating files:  33% (4061/12163)Updating files:  34% (4136/12163)Updating files:  35% (4258/12163)Updating files:  36% (4379/12163)Updating files:  37% (4501/12163)Updating files:  38% (4622/12163)Updating files:  39% (4744/12163)Updating files:  40% (4866/12163)Updating files:  41% (4987/12163)Updating files:  42% (5109/12163)Updating files:  43% (5231/12163)Updating files:  44% (5352/12163)Updating files:  45% (5474/12163)Updating files:  46% (5595/12163)Updating files:  47% (5717/12163)Updating files:  48% (5839/12163)Updating files:  49% (5960/12163)Updating files:  50% (6082/12163)Updating files:  51% (6204/12163)Updating files:  52% (6325/12163)Updating files:  53% (6447/12163)Updating files:  54% (6569/12163)Updating files:  55% (6690/12163)Updating files:  56% (6812/12163)Updating files:  57% (6933/12163)Updating files:  58% (7055/12163)Updating files:  59% (7177/12163)Updating files:  60% (7298/12163)Updating files:  61% (7420/12163)Updating files:  62% (7542/12163)Updating files:  63% (7663/12163)Updating files:  64% (7785/12163)Updating files:  65% (7906/12163)Updating files:  66% (8028/12163)Updating files:  67% (8150/12163)Updating files:  68% (8271/12163)Updating files:  69% (8393/12163)Updating files:  70% (8515/12163)Updating files:  71% (8636/12163)Updating files:  72% (8758/12163)Updating files:  73% (8879/12163)Updating files:  74% (9001/12163)Updating files:  75% (9123/12163)Updating files:  76% (9244/12163)Updating files:  77% (9366/12163)Updating files:  78% (9488/12163)Updating files:  79% (9609/12163)Updating files:  80% (9731/12163)Updating files:  81% (9853/12163)Updating files:  82% (9974/12163)Updating files:  83% (10096/12163)Updating files:  84% (10217/12163)Updating files:  85% (10339/12163)Updating files:  86% (10461/12163)Updating files:  87% (10582/12163)Updating files:  88% (10704/12163)Updating files:  89% (10826/12163)Updating files:  90% (10947/12163)Updating files:  91% (11069/12163)Updating files:  92% (11190/12163)Updating files:  93% (11312/12163)Updating files:  94% (11434/12163)Updating files:  95% (11555/12163)Updating files:  96% (11677/12163)Updating files:  97% (11799/12163)Updating files:  98% (11920/12163)Updating files:  99% (12042/12163)Updating files: 100% (12163/12163)Updating files: 100% (12163/12163), done.
+#13 DONE 32.6s
+
+#14 [ 9/13] WORKDIR /build/bun
+#14 DONE 0.3s
+
+#15 [10/13] RUN git submodule update --init --recursive
+#15 DONE 0.2s
+
+#16 [11/13] RUN bun install --frozen-lockfile || bun install
+#16 0.188 bun install v1.3.5 (1e86cebd)
+#16 3.104 
+#16 3.104 + @lezer/common@1.3.0
+#16 3.104 + @lezer/cpp@1.1.3
+#16 3.104 + bun-tracestrings@github:oven-sh/bun.report#912ca63
+#16 3.104 + esbuild@0.21.5
+#16 3.104 + mitata@0.1.14
+#16 3.104 + peechy@0.4.34
+#16 3.104 + prettier@3.6.2
+#16 3.104 + prettier-plugin-organize-imports@4.3.0
+#16 3.104 + react@18.3.1
+#16 3.104 + react-dom@18.3.1
+#16 3.104 + source-map-js@1.2.1
+#16 3.104 + typescript@5.9.2
+#16 3.104 
+#16 3.104 230 packages installed [2.91s]
+#16 DONE 4.3s
+
+#17 [12/13] COPY build.sh /build/build.sh
+#17 DONE 0.2s
+
+#18 [13/13] RUN chmod +x /build/build.sh
+#18 DONE 0.4s
+
+#19 exporting to image
+#19 exporting layers
+#19 exporting layers 40.3s done
+#19 exporting manifest sha256:193d69a88438b99f3b3347994600512580c9e9ab2eae990d5deb4aa27a608c07
+#19 exporting manifest sha256:193d69a88438b99f3b3347994600512580c9e9ab2eae990d5deb4aa27a608c07 0.0s done
+#19 exporting config sha256:a1baf7087b35ae9b9f2acb532ce3fad5f4e7634f4a90adb547749927e3cceaad 0.0s done
+#19 exporting attestation manifest sha256:7898dfc0d1ea2af7536b20da1987e14eb8ff8457ceed03dad632a6f93c2f181c 0.0s done
+#19 exporting manifest list sha256:f3bfeed2148a68d2858163cc585eed09518d8b077cbc86434984d0ddd8983e1b 0.0s done
+#19 naming to docker.io/library/bun-build:latest done
+#19 unpacking to docker.io/library/bun-build:latest
+#19 unpacking to docker.io/library/bun-build:latest 60.8s done
+#19 DONE 101.2s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/cvk4v8x3ewnmt4yk0yzexh3i7

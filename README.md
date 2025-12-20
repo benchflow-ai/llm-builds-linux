@@ -105,6 +105,7 @@ Research identified these common failure points:
 | [build-debootstrap](linux/build-debootstrap/) | Linux | Partial (0.7) | Claude Opus 4.5 |
 | [build-livebuild](linux/build-livebuild/) | Linux | Partial (0.6) | Claude Opus 4.5 |
 | [benchmark](linux/benchmark/) | Linux | Success (1.0) | Claude Opus 4.5 |
+| [build-bunjs](runtimes/build-bunjs/) | Runtimes | Partial (0.6) | Claude Opus 4.5 |
 
 ## Contributing Experiments
 

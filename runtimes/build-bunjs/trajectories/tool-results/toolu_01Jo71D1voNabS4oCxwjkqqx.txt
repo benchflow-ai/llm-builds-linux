@@ -1,0 +1,83 @@
+     1→# Dockerfile for building Bun from source
+     2→# Based on official Bun contributing documentation
+     3→# https://bun.sh/docs/project/contributing
+     4→
+     5→FROM ubuntu:24.04
+     6→
+     7→# Prevent interactive prompts
+     8→ENV DEBIAN_FRONTEND=noninteractive
+     9→
+    10→# Install base dependencies
+    11→RUN apt-get update && apt-get install -y \
+    12→    build-essential \
+    13→    curl \
+    14→    wget \
+    15→    lsb-release \
+    16→    software-properties-common \
+    17→    git \
+    18→    cmake \
+    19→    ninja-build \
+    20→    pkg-config \
+    21→    libtool \
+    22→    xz-utils \
+    23→    unzip \
+    24→    python3 \
+    25→    python3-pip \
+    26→    golang \
+    27→    rustc \
+    28→    cargo \
+    29→    ruby-full \
+    30→    ccache \
+    31→    gnupg \
+    32→    ca-certificates \
+    33→    && rm -rf /var/lib/apt/lists/*
+    34→
+    35→# Install GCC 11+ for C++20 support (required for 'span' header)
+    36→RUN apt-get update && apt-get install -y gcc-11 g++-11 && \
+    37→    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 && \
+    38→    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100 && \
+    39→    rm -rf /var/lib/apt/lists/*
+    40→
+    41→# Install LLVM 19 (MUST match WebKit version)
+    42→RUN wget https://apt.llvm.org/llvm.sh && \
+    43→    chmod +x llvm.sh && \
+    44→    ./llvm.sh 19 all && \
+    45→    rm llvm.sh && \
+    46→    rm -rf /var/lib/apt/lists/*
+    47→
+    48→# Add LLVM 19 to PATH
+    49→ENV PATH="/usr/lib/llvm-19/bin:${PATH}"
+    50→ENV CC=clang-19
+    51→ENV CXX=clang++-19
+    52→
+    53→# Install Bun (required for bootstrapping - you can't build Bun without Bun)
+    54→RUN curl -fsSL https://bun.com/install | bash
+    55→ENV PATH="/root/.bun/bin:${PATH}"
+    56→
+    57→# Create work directory
+    58→WORKDIR /build
+    59→
+    60→# Clone Bun repository (full clone needed for submodules and cargo lock files)
+    61→# Note: This is a large clone (~1GB+), but shallow clones break submodule dependencies
+    62→RUN git clone https://github.com/oven-sh/bun.git bun
+    63→
+    64→WORKDIR /build/bun
+    65→
+    66→# Initialize submodules - needed for dependencies like lolhtml
+    67→RUN git submodule update --init --recursive
+    68→
+    69→# Setup environment
+    70→ENV BUN_INSTALL="/root/.bun"
+    71→ENV PATH="${BUN_INSTALL}/bin:${PATH}"
+    72→
+    73→# Build script
+    74→COPY build.sh /build/build.sh
+    75→RUN chmod +x /build/build.sh
+    76→
+    77→# Default command - run the build
+    78→CMD ["/build/build.sh"]
+    79→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

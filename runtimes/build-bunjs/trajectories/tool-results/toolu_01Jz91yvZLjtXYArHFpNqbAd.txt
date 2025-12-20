@@ -1,0 +1,11 @@
+-- [download 94% complete]
+-- [download 95% complete]
+-- [download 96% complete]
+-- [download 97% complete]
+-- [download 98% complete]
+-- [download 99% complete]
+-- [download 100% complete]
+-- Extracting bootstrap-aarch64-linux-musl.zip...
+-- Hoisting bootstrap-aarch64-linux-musl...
+-- Saved /build/bun/vendor/zig
+ninja: build stopped: subcommand failed.

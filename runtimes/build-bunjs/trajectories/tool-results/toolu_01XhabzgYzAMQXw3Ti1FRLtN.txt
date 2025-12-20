@@ -1,0 +1,86 @@
+The file /Users/lixiangyi/conductor/workspaces/llm-builds-linux/abu-dhabi/runtimes/build-bunjs/artifacts/Dockerfile has been updated. Here's the result of running `cat -n` on a snippet of the edited file:
+     1→# Dockerfile for building Bun from source
+     2→# Based on official Bun contributing documentation
+     3→# https://bun.sh/docs/project/contributing
+     4→
+     5→FROM ubuntu:24.04
+     6→
+     7→# Prevent interactive prompts
+     8→ENV DEBIAN_FRONTEND=noninteractive
+     9→
+    10→# Install base dependencies
+    11→RUN apt-get update && apt-get install -y \
+    12→    build-essential \
+    13→    curl \
+    14→    wget \
+    15→    lsb-release \
+    16→    software-properties-common \
+    17→    git \
+    18→    cmake \
+    19→    ninja-build \
+    20→    pkg-config \
+    21→    libtool \
+    22→    xz-utils \
+    23→    unzip \
+    24→    python3 \
+    25→    python3-pip \
+    26→    golang \
+    27→    ruby-full \
+    28→    ccache \
+    29→    gnupg \
+    30→    ca-certificates \
+    31→    && rm -rf /var/lib/apt/lists/*
+    32→
+    33→# Install GCC 11+ for C++20 support (required for 'span' header)
+    34→RUN apt-get update && apt-get install -y gcc-11 g++-11 && \
+    35→    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 && \
+    36→    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100 && \
+    37→    rm -rf /var/lib/apt/lists/*
+    38→
+    39→# Install LLVM 19 (MUST match WebKit version)
+    40→RUN wget https://apt.llvm.org/llvm.sh && \
+    41→    chmod +x llvm.sh && \
+    42→    ./llvm.sh 19 all && \
+    43→    rm llvm.sh && \
+    44→    rm -rf /var/lib/apt/lists/*
+    45→
+    46→# Add LLVM 19 to PATH
+    47→ENV PATH="/usr/lib/llvm-19/bin:${PATH}"
+    48→ENV CC=clang-19
+    49→ENV CXX=clang++-19
+    50→
+    51→# Install Rust via rustup (needed for lolhtml and other Rust dependencies)
+    52→# The default Ubuntu rustc is too old for some Cargo.lock files
+    53→RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+    54→ENV PATH="/root/.cargo/bin:${PATH}"
+    55→
+    56→# Install Bun (required for bootstrapping - you can't build Bun without Bun)
+    57→RUN curl -fsSL https://bun.com/install | bash
+    58→ENV PATH="/root/.bun/bin:${PATH}"
+    59→
+    60→# Create work directory
+    61→WORKDIR /build
+    62→
+    63→# Clone Bun repository with full history (needed for submodules and cargo lock files)
+    64→# Note: This is a large clone (~1GB+), but shallow clones break submodule dependencies
+    65→RUN git clone https://github.com/oven-sh/bun.git bun
+    66→
+    67→WORKDIR /build/bun
+    68→
+    69→# Initialize submodules - needed for dependencies like lolhtml
+    70→RUN git submodule update --init --recursive
+    71→
+    72→# Setup environment
+    73→ENV BUN_INSTALL="/root/.bun"
+    74→ENV PATH="${BUN_INSTALL}/bin:${PATH}"
+    75→
+    76→# Pre-install dependencies to avoid EEXIST errors during parallel build
+    77→RUN bun install --frozen-lockfile || bun install
+    78→
+    79→# Build script
+    80→COPY build.sh /build/build.sh
+    81→RUN chmod +x /build/build.sh
+    82→
+    83→# Default command - run the build
+    84→CMD ["/build/build.sh"]
+    85→

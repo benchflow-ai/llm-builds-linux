@@ -1,0 +1,359 @@
+     1→# Contributing Experiments
+     2→
+     3→This guide explains how AI agents (and humans) should structure and report experiments in this repository.
+     4→
+     5→## For AI Agents: Quick Reference
+     6→
+     7→When completing an experiment, create these files:
+     8→
+     9→```
+    10→<category>/<experiment-name>/
+    11→├── README.md           # Human-readable overview
+    12→├── EXPERIMENT.yaml     # Machine-readable metadata
+    13→├── artifacts/          # All code, scripts, configs you created
+    14→└── trajectories/
+    15→    ├── SUMMARY.md      # Narrative of what you did
+    16→    └── session-*.jsonl # Sanitized session logs
+    17→```
+    18→
+    19→## Directory Structure
+    20→
+    21→### Top-Level Categories
+    22→
+    23→Experiments are organized by category:
+    24→
+    25→```
+    26→llm-builds-linux/
+    27→├── linux/              # Linux distribution experiments
+    28→│   ├── build-debootstrap/
+    29→│   ├── build-livebuild/
+    30→│   └── benchmark/
+    31→├── chrome/             # Chromium experiments (future)
+    32→└── [other-category]/   # Future categories
+    33→```
+    34→
+    35→### Experiment Naming
+    36→
+    37→Use lowercase, hyphenated names that describe what was built or tested:
+    38→
+    39→- `build-debootstrap` - Building with debootstrap
+    40→- `build-livebuild` - Building with live-build
+    41→- `benchmark` - Benchmark framework
+    42→- `build-chromium` - Building Chromium (future)
+    43→
+    44→## Required Files
+    45→
+    46→### 1. README.md
+    47→
+    48→Human-readable overview with key metrics table.
+    49→
+    50→```markdown
+    51→# [Experiment Name]
+    52→
+    53→[One-line description]
+    54→
+    55→## Overview
+    56→
+    57→| Metric | Value |
+    58→|--------|-------|
+    59→| Agent | Claude Opus 4.5 |
+    60→| Duration | ~X hours |
+    61→| Sessions | N |
+    62→| Outcome | **SUCCESS/PARTIAL/FAILED** - [brief description] |
+    63→| Difficulty | Easy/Medium/Hard/Extreme |
+    64→
+    65→## Task
+    66→
+    67→[What was asked/attempted]
+    68→
+    69→## Results
+    70→
+    71→- [Bullet point achievements]
+    72→- [What worked]
+    73→- [What didn't work]
+    74→
+    75→## Files
+    76→
+    77→\`\`\`
+    78→artifacts/
+    79→├── [file]    # [description]
+    80→└── [dir]/    # [description]
+    81→trajectories/
+    82→├── SUMMARY.md
+    83→└── session-*.jsonl
+    84→\`\`\`
+    85→
+    86→## Quick Start
+    87→
+    88→\`\`\`bash
+    89→# Commands to reproduce or use the artifacts
+    90→\`\`\`
+    91→
+    92→## Key Learnings
+    93→
+    94→1. **[Learning]** - [explanation]
+    95→2. **[Learning]** - [explanation]
+    96→```
+    97→
+    98→### 2. EXPERIMENT.yaml
+    99→
+   100→Machine-readable metadata for analysis and filtering.
+   101→
+   102→```yaml
+   103→name: "Human Readable Name"
+   104→id: experiment-id
+   105→category: build  # build | benchmark | debug | research
+   106→status: success  # success | partial | failed | in-progress
+   107→
+   108→agent:
+   109→  model: claude-opus-4-5  # or claude-sonnet-4, etc.
+   110→  sessions: 2
+   111→  total_duration_hours: 3
+   112→  active_duration_hours: 2
+   113→
+   114→task:
+   115→  description: "What the experiment aimed to do"
+   116→  initial_prompt: "The exact first user message"
+   117→  difficulty: hard  # easy | medium | hard | extreme
+   118→  estimated_steps: 80
+   119→
+   120→results:
+   121→  success: true  # or false
+   122→  partial_score: 0.7  # 0.0 to 1.0
+   123→  artifacts:
+   124→    - "key_file_1.py"
+   125→    - "key_file_2.sh"
+   126→  key_metrics:
+   127→    # Custom metrics relevant to this experiment
+   128→    build_stages: 8
+   129→    iso_created: true
+   130→
+   131→# Optional but encouraged
+   132→cost:
+   133→  total_usd: 15.50
+   134→  input_tokens: 50000
+   135→  output_tokens: 200000
+   136→
+   137→human_intervention:
+   138→  count: 2
+   139→  critical: false  # true if couldn't proceed without it
+   140→  details:
+   141→    - "Platform hint (ARM64 vs AMD64)"
+   142→    - "CAPTCHA during web research"
+   143→
+   144→findings:
+   145→  successes:
+   146→    - "What worked well"
+   147→  failures:
+   148→    - "What didn't work"
+   149→  lessons:
+   150→    - "Key learnings for future experiments"
+   151→
+   152→references:
+   153→  pr_url: "https://github.com/..."
+   154→  docs:
+   155→    - "https://relevant-docs.com"
+   156→
+   157→tags:
+   158→  - linux
+   159→  - docker
+   160→  - bootable-iso
+   161→```
+   162→
+   163→### 3. trajectories/SUMMARY.md
+   164→
+   165→Detailed narrative of the agent's journey.
+   166→
+   167→```markdown
+   168→# [Experiment Name] - Agent Trajectory Summary
+   169→
+   170→## Overview
+   171→
+   172→| Metric | Value |
+   173→|--------|-------|
+   174→| Agent | Claude Opus 4.5 |
+   175→| Duration | X hours |
+   176→| Sessions | N |
+   177→| Outcome | SUCCESS/PARTIAL/FAILED |
+   178→| Cost | $X.XX |
+   179→
+   180→## User Request
+   181→
+   182→"[Exact initial prompt from user]"
+   183→
+   184→## Approach
+   185→
+   186→[How the agent approached the problem]
+   187→
+   188→## Key Steps
+   189→
+   190→### Session 1: [Title]
+   191→
+   192→1. [Step with context]
+   193→2. [Step with context]
+   194→
+   195→### Session 2: [Title]
+   196→
+   197→1. [Step with context]
+   198→...
+   199→
+   200→## Artifacts Produced
+   201→
+   202→| File | Lines | Description |
+   203→|------|-------|-------------|
+   204→| \`file.py\` | 200 | What it does |
+   205→
+   206→## Metrics
+   207→
+   208→| Metric | Value |
+   209→|--------|-------|
+   210→| Tool calls | ~150 |
+   211→| Files created | 6 |
+   212→| Lines of code | ~500 |
+   213→
+   214→## Where Agent Succeeded
+   215→
+   216→1. [Success with explanation]
+   217→
+   218→## Where Agent Struggled
+   219→
+   220→1. [Struggle with explanation]
+   221→
+   222→## Lessons for Agent Evaluation
+   223→
+   224→1. [Lesson]
+   225→2. [Lesson]
+   226→
+   227→## Reproduction Steps
+   228→
+   229→\`\`\`bash
+   230→# Exact commands to reproduce
+   231→\`\`\`
+   232→```
+   233→
+   234→### 4. trajectories/session-*.jsonl
+   235→
+   236→Sanitized session logs (one JSON object per line):
+   237→
+   238→```json
+   239→{"type": "user", "timestamp": "2025-12-15T15:41:00Z", "text": "can you build..."}
+   240→{"type": "assistant", "timestamp": "2025-12-15T15:41:05Z", "tool": "Bash", "command": "git clone..."}
+   241→{"type": "tool_result", "timestamp": "2025-12-15T15:41:10Z", "success": true}
+   242→```
+   243→
+   244→**Sanitization rules:**
+   245→- Remove API keys, tokens, passwords
+   246→- Truncate outputs longer than 500 chars
+   247→- Replace personal paths with `$HOME` or `$WORKDIR`
+   248→
+   249→### 5. artifacts/
+   250→
+   251→All code, scripts, and configurations created during the experiment.
+   252→
+   253→Organize logically:
+   254→```
+   255→artifacts/
+   256→├── Dockerfile
+   257→├── build.sh
+   258→├── src/
+   259→│   └── main.py
+   260→└── config/
+   261→    └── settings.yaml
+   262→```
+   263→
+   264→## Difficulty Calibration
+   265→
+   266→When assigning difficulty, use these guidelines:
+   267→
+   268→| Difficulty | Expected Agent Success | Steps | Characteristics |
+   269→|------------|----------------------|-------|-----------------|
+   270→| Easy | ~50% | 10-25 | Tool-assisted, clear docs |
+   271→| Medium | ~20% | 30-55 | Config work, some debugging |
+   272→| Hard | ~5% | 50-80 | Complex debugging, ISOs |
+   273→| Extreme | <1% | 100+ | LFS-style, novel problems |
+   274→
+   275→## Status Definitions
+   276→
+   277→- **success** - All objectives met, artifacts work as intended
+   278→- **partial** - Some objectives met, artifacts partially work
+   279→- **failed** - Core objectives not met
+   280→- **in-progress** - Experiment ongoing
+   281→
+   282→## Partial Score Guidelines
+   283→
+   284→| Score | Meaning |
+   285→|-------|---------|
+   286→| 1.0 | Complete success |
+   287→| 0.7-0.9 | Works but minor issues |
+   288→| 0.4-0.6 | Partially works, significant gaps |
+   289→| 0.1-0.3 | Minimal progress, major blockers |
+   290→| 0.0 | No meaningful progress |
+   291→
+   292→## Creating a Pull Request
+   293→
+   294→1. Create a branch: `git checkout -b <username>/<experiment-name>`
+   295→2. Add your experiment following this structure
+   296→3. Push and create PR with this template:
+   297→
+   298→```markdown
+   299→## Summary
+   300→
+   301→[1-3 bullet points of what was done]
+   302→
+   303→## Experiment Structure
+   304→
+   305→\`\`\`
+   306→<category>/<experiment-name>/
+   307→├── README.md
+   308→├── EXPERIMENT.yaml
+   309→├── artifacts/
+   310→└── trajectories/
+   311→\`\`\`
+   312→
+   313→## Key Metrics
+   314→
+   315→| Metric | Value |
+   316→|--------|-------|
+   317→| Agent | ... |
+   318→| Duration | ... |
+   319→| Outcome | ... |
+   320→
+   321→## Test plan
+   322→
+   323→- [ ] EXPERIMENT.yaml validates
+   324→- [ ] Artifacts are organized
+   325→- [ ] Trajectory is complete
+   326→
+   327→🤖 Generated with [Claude Code](https://claude.com/claude-code)
+   328→```
+   329→
+   330→## Example: Complete Experiment
+   331→
+   332→See `linux/build-debootstrap/` for a complete example:
+   333→
+   334→```
+   335→linux/build-debootstrap/
+   336→├── README.md                 # Overview with metrics table
+   337→├── EXPERIMENT.yaml           # Machine-readable metadata
+   338→├── artifacts/
+   339→│   ├── Dockerfile           # Build environment
+   340→│   ├── build.sh             # Orchestration
+   341→│   └── build-scripts/       # Core scripts
+   342→└── trajectories/
+   343→    ├── SUMMARY.md           # Detailed narrative
+   344→    └── session-build.jsonl  # Session log
+   345→```
+   346→
+   347→## Tips for AI Agents
+   348→
+   349→1. **Track your work** - Use todo lists to maintain progress across long experiments
+   350→2. **Document as you go** - Write SUMMARY.md incrementally, not at the end
+   351→3. **Be honest about failures** - Partial results are valuable; document what didn't work
+   352→4. **Include reproduction steps** - Future agents/humans should be able to rebuild
+   353→5. **Sanitize carefully** - Remove secrets but keep enough context to understand
+   354→6. **Note human interventions** - Critical for evaluating true agent capability
+   355→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>

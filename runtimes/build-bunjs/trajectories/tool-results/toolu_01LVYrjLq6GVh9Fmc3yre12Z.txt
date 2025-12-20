@@ -1,0 +1,135 @@
+[73/632] Building src/*.zig into /build/bun/build/debug/bun-zig.o for aarch64-linux-gnu
+info: zig compiler v0.15.2
+[2mobj
+(0mq(B install generated to bun-zig.o
+   (0mq(B compile obj bun-debug Debug aarch64-linux-gnu.2.26[31m failure
+[0m[0m[31merror: [0mthe following command terminated unexpectedly:
+/build/bun/vendor/zig/zig build-obj -freference-trace=16 -fllvm -fno-lld -fno-strip -fno-omit-frame-pointer -fsanitize-address -fPIC -ODebug -target aarch64-linux-gnu.2.26 -mcpu cortex_a35 --dep bun -Mroot=/build/bun/src/main.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mbun=/build/bun/src/bun.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mbuild_options=build/debug/cache/zig/local/c/6331ac1bc698839292de3b825582d0d2/options.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mtranslated-c-headers=build/debug/cache/zig/local/o/6e35939304593462da05856f7fafcccd/c-headers-for-zig.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mzlib-internal=/build/bun/src/deps/zlib.posix.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Masync=/build/bun/src/async/posix_event_loop.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -MZigGeneratedClasses=/build/bun/build/debug/codegen/ZigGeneratedClasses.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mbindgen_generated=/build/bun/build/debug/codegen/bindgen_generated.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -MResolvedSourceTag=/build/bun/build/debug/codegen/ResolvedSourceTag.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -MErrorCode=/build/bun/build/debug/codegen/ErrorCode.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mcpp=/build/bun/build/debug/codegen/cpp.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mci_info=/build/bun/build/debug/codegen/ci_info.zig --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mcompletions-bash=/build/bun/completions/bun.bash --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mcompletions-zsh=/build/bun/completions/bun.zsh --dep bun --dep build_options --dep translated-c-headers --dep zlib-internal --dep async --dep ZigGeneratedClasses --dep bindgen_generated --dep ResolvedSourceTag --dep ErrorCode --dep cpp --dep ci_info --dep completions-bash --dep completions-zsh --dep completions-fish -Mcompletions-fish=/build/bun/completions/bun.fish -lc++ -lc -ffunction-sections -fdata-sections --no-link --cache-dir build/debug/cache/zig/local --global-cache-dir build/debug/cache/zig/global --name bun-debug -fno-compiler-rt -fno-ubsan-rt --zig-lib-dir vendor/zig/lib/ --listen=-
+[36m
+Build Summary:[0m 2/5 steps succeeded; 1 failed
+obj[2m transitive failure
+[0m(0tq(B compile obj bun-debug Debug aarch64-linux-gnu.2.26[31m failure
+[0m(0x(B  (0tq(B options[32m success[0m
+(0x(B  (0mq(B translate-c[32m success[0m[2m 1s[0m[2m MaxRSS:57M[0m
+(0mq(B install generated to bun-zig.o[2m transitive failure
+[0m   [2m(0mq(B compile obj bun-debug Debug aarch64-linux-gnu.2.26 (+2 more reused dependencies)
+[0m
+error: the following build command failed with exit code 1:
+build/debug/cache/zig/local/o/0946a590c8ffedab5fd36e557f0fad41/build /build/bun/vendor/zig/zig vendor/zig/lib /build/bun build/debug/cache/zig/local build/debug/cache/zig/global --seed 0x7cecf986 -Za57a7fe2707946fd obj --prefix /build/bun/build/debug -Dobj_format=obj -Dtarget=aarch64-linux-gnu -Doptimize=Debug -Dcpu=native -Denable_logs=true -Denable_asan=true -Denable_fuzzilli=false -Denable_valgrind=false -Duse_mimalloc=true -Dllvm_codegen_threads=0 -Dversion=1.3.6 -Dreported_nodejs_version=24.3.0 -Dcanary=1 -Dcodegen_path=/build/bun/build/debug/codegen -Dcodegen_embed=false --prominent-compile-errors --summary all -Dsha=e79b512a9d29e05e894224217ccbb8ff5f4094f6
+[80/632] Building zstd
+[1/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/debug.c.o
+[2/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/threading.c.o
+[3/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/hist.c.o
+[4/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/fse_decompress.c.o
+[5/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/entropy_common.c.o
+[6/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/error_private.c.o
+[7/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/zstd_common.c.o
+[8/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/pool.c.o
+[9/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/huf_compress.c.o
+[10/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/common/xxhash.c.o
+[11/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/fse_compress.c.o
+[12/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_compress_sequences.c.o
+[13/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_compress_literals.c.o
+[14/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_preSplit.c.o
+[15/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/decompress/zstd_ddict.c.o
+[16/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/decompress/huf_decompress.c.o
+[17/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_compress_superblock.c.o
+[18/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/dictBuilder/divsufsort.c.o
+[19/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v01.c.o
+[20/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_opt.c.o
+[21/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_ldm.c.o
+[22/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_double_fast.c.o
+[23/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstdmt_compress.c.o
+[24/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/decompress/zstd_decompress.c.o
+[25/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/dictBuilder/cover.c.o
+[26/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v04.c.o
+[27/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v03.c.o
+[28/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_fast.c.o
+[29/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/dictBuilder/zdict.c.o
+[30/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/dictBuilder/fastcover.c.o
+[31/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_compress.c.o
+[32/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/decompress/zstd_decompress_block.c.o
+[33/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v02.c.o
+[34/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v05.c.o
+[35/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v06.c.o
+[36/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/legacy/zstd_v07.c.o
+[37/38] Building C object lib/CMakeFiles/libzstd_static.dir/build/bun/vendor/zstd/lib/compress/zstd_lazy.c.o
+[38/38] Linking C static library lib/libzstd.a
+[81/632] Building sqlite
+[1/2] Building C object CMakeFiles/sqlite3.dir/sqlite3.c.o
+[2/2] Linking C static library libsqlite3.a
+[82/632] Building boringssl
+[1/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aes-gcm-avx512-x86_64-apple.S.o
+[2/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-x86-apple.S.o
+[3/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-x86-linux.S.o
+[4/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-gcm-armv8-apple.S.o
+[5/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-gcm-x86_64-linux.S.o
+[6/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aes-gcm-avx512-x86_64-linux.S.o
+[7/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-armv8-linux.S.o
+[8/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aes-gcm-avx2-x86_64-linux.S.o
+[9/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aes-gcm-avx2-x86_64-apple.S.o
+[10/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-x86_64-linux.S.o
+[11/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-armv8-win.S.o
+[12/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-gcm-x86_64-apple.S.o
+[13/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-armv8-apple.S.o
+[14/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-armv7-linux.S.o
+[15/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesni-x86_64-apple.S.o
+[16/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-gcm-armv8-linux.S.o
+[17/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/armv4-mont-linux.S.o
+[18/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/armv8-mont-apple.S.o
+[19/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/aesv8-gcm-armv8-win.S.o
+[20/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/co-586-apple.S.o
+[21/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/armv8-mont-win.S.o
+[22/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/co-586-linux.S.o
+[23/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bn-armv8-linux.S.o
+[24/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/armv8-mont-linux.S.o
+[25/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-neon-armv8-apple.S.o
+[26/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bsaes-armv7-linux.S.o
+[27/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-x86-apple.S.o
+[28/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-armv4-linux.S.o
+[29/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bn-586-linux.S.o
+[30/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-ssse3-x86-apple.S.o
+[31/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-neon-armv8-win.S.o
+[32/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-neon-armv8-linux.S.o
+[33/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bn-armv8-apple.S.o
+[34/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bn-armv8-win.S.o
+[35/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-ssse3-x86_64-apple.S.o
+[36/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/bn-586-apple.S.o
+[37/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-ssse3-x86-linux.S.o
+[38/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-x86-linux.S.o
+[39/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghashv8-armv8-apple.S.o
+[40/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghashv8-armv8-linux.S.o
+[41/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-ssse3-x86_64-linux.S.o
+[42/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghashv8-armv8-win.S.o
+[43/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256-armv8-asm-win.S.o
+[44/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-x86_64-apple.S.o
+[45/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256_beeu-armv8-asm-apple.S.o
+[46/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256-x86_64-asm-linux.S.o
+[47/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghash-x86_64-linux.S.o
+[48/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/ghashv8-armv7-linux.S.o
+[49/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256_beeu-armv8-asm-win.S.o
+[50/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256-armv8-asm-apple.S.o
+[51/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256-x86_64-asm-apple.S.o
+[52/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256_beeu-armv8-asm-linux.S.o
+[53/427] Building ASM object CMakeFiles/fipsmodule.dir/gen/bcm/p256_beeu-x86_64-asm-apple.S.o
+--
+[31mFAILED: [0mbun-zig.o /build/bun/build/debug/bun-zig.o 
+cd /build/bun && /build/bun/vendor/zig/zig build obj --cache-dir /build/bun/build/debug/cache/zig/local --global-cache-dir /build/bun/build/debug/cache/zig/global --zig-lib-dir /build/bun/vendor/zig/lib --prefix /build/bun/build/debug -Dobj_format=obj -Dtarget=aarch64-linux-gnu -Doptimize=Debug -Dcpu=native -Denable_logs=true -Denable_asan=true -Denable_fuzzilli=false -Denable_valgrind=false -Duse_mimalloc=true -Dllvm_codegen_threads=0 -Dversion=1.3.6 -Dreported_nodejs_version=24.3.0 -Dcanary=1 -Dcodegen_path=/build/bun/build/debug/codegen -Dcodegen_embed=false --prominent-compile-errors --summary all -Dsha=e79b512a9d29e05e894224217ccbb8ff5f4094f6
+[99/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunCommonStrings.cpp.o
+[100/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/BakeGlobalObject.cpp.o
+[101/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunCPUProfiler.cpp.o
+[102/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunGCOutputConstraint.cpp.o
+[103/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunClientData.cpp.o
+[104/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/AsyncContextFrame.cpp.o
+[105/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BunDebugger.cpp.o
+[106/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/BakeSourceProvider.cpp.o
+[107/632] Building CXX object CMakeFiles/bun-debug.dir/src/bake/DevServerSourceProvider.cpp.o
+[108/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/blob.cpp.o
+[109/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/BakeAdditionsToGlobalObject.cpp.o
+[110/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/AsymmetricKeyValue.cpp.o
+[111/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/bindings.cpp.o
+ninja: build stopped: subcommand failed.
+  cmake took 6.08 minutes
+  Command exited: code 1
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1

@@ -1,0 +1,300 @@
+# Complete Build Instructions for Bun from Source
+
+## System Requirements
+- **Disk Space**: ~10GB free for repository and build artifacts
+- **Time**: 10-30 minutes depending on internet connection and computer speed
+- **Platform**: macOS, Linux (Ubuntu, Arch, Fedora, openSUSE), or Windows (separate guide)
+
+---
+
+## Dependency Installation
+
+### macOS (Homebrew)
+```bash
+$ brew install automake cmake coreutils gnu-sed go icu4c libiconv libtool ninja pkg-config rust ruby sccache
+```
+
+### Ubuntu/Debian
+```bash
+$ sudo apt install curl wget lsb-release software-properties-common cargo cmake git golang libtool ninja-build pkg-config rustc ruby-full xz-utils
+```
+
+### Arch
+```bash
+$ sudo pacman -S base-devel cmake git go libiconv libtool make ninja pkg-config python rust sed unzip ruby
+```
+
+### Fedora
+```bash
+$ sudo dnf install cargo clang19 llvm19 lld19 cmake git golang libtool ninja-build pkg-config rustc ruby libatomic-static libstdc++-static sed unzip which libicu-devel 'perl(Math::BigInt)'
+```
+
+### openSUSE Tumbleweed
+```bash
+$ sudo zypper install go cmake ninja automake git icu libstdc++-devel rustup sed unzip ruby && rustup toolchain install stable
+```
+
+### Important Notes:
+- **Zig compiler**: Automatically installed and updated by build scripts (manual installation not required)
+- **Pre-requisite**: A release build of Bun must already be installed for bundling and code generation
+
+---
+
+## Install Bun (Pre-requisite)
+
+```bash
+# Native installation
+$ curl -fsSL https://bun.com/install | bash
+
+# Or via npm
+$ npm install -g bun
+
+# Or via Homebrew
+$ brew tap oven-sh/bun
+$ brew install bun
+```
+
+---
+
+## LLVM 19 Installation (Required)
+
+Bun requires LLVM 19 specifically to match WebKit (precompiled). Mismatched versions cause memory allocation failures.
+
+### macOS (Homebrew)
+```bash
+$ brew install llvm@19
+```
+
+### Ubuntu/Debian
+```bash
+$ wget https://apt.llvm.org/llvm.sh -O - | sudo bash -s -- 19 all
+```
+
+### Arch
+```bash
+$ sudo pacman -S llvm clang lld
+```
+
+### Fedora
+```bash
+$ sudo dnf install llvm clang lld-devel
+```
+
+### openSUSE Tumbleweed
+```bash
+$ sudo zypper install clang19 lld19 llvm19
+```
+
+### Verify LLVM is in PATH
+```bash
+$ which clang-19
+```
+
+### If not found, add to PATH:
+
+**macOS (Homebrew)**:
+```bash
+$ export PATH="$(brew --prefix llvm@19)/bin:$PATH"
+```
+
+**Arch**:
+```bash
+$ export PATH="$PATH:/usr/lib/llvm19/bin"
+```
+
+---
+
+## Optional: Install sccache (Compilation Cache)
+
+Speeds up builds by caching compilation artifacts:
+
+```bash
+# For macOS
+$ brew install sccache
+
+# For Linux (with S3 support)
+$ cargo install sccache --features=s3
+```
+
+### AWS Credentials for sccache (Core Developers Only)
+```bash
+$ aws configure
+```
+The cmake scripts will automatically detect credentials from `~/.aws/credentials` or environment variables.
+
+---
+
+## Alternative: Using Nix (Reproducible Environment)
+
+```bash
+nix develop
+# or explicitly use the pure shell
+# nix develop .#pure
+export CMAKE_SYSTEM_PROCESSOR=$(uname -m)
+bun bd
+```
+
+---
+
+## Building Bun
+
+### Clone Repository and Build
+```bash
+git clone https://github.com/oven-sh/bun.git
+cd bun
+bun run build
+```
+
+This command:
+- Clones submodules
+- Builds dependencies
+- Compiles the debug binary
+
+### Verify Build
+```bash
+$ build/debug/bun-debug --version
+x.y.z_debug
+```
+
+---
+
+## Development Workflow
+
+### Quick Debug Builds
+```bash
+# Compiles and runs, suppressing output unless it fails
+bun bd <args>
+bun bd test foo.test.ts
+bun bd ./foo.ts
+```
+
+### Recommended Development Practices
+1. **Batch changes** - Debug builds take ~2.5 minutes with Zig changes
+2. **Use ZLS** - Run the Zig language server with incremental watching
+3. **Use VSCode debugger** - Step through code with CodeLLDB extension
+4. **Enable debug logs**: 
+   ```bash
+   BUN_DEBUG_<scope>=1 bun-debug ...  # Enable specific scope (e.g., EventLoop)
+   BUN_DEBUG_QUIET_LOGS=1 bun-debug ...  # Disable all debug logging
+   BUN_DEBUG=<path>.log  # Dump logs to file
+   ```
+5. **Fast rebuilds for certain changes**:
+   - `src/js/**.ts` changes: instant
+   - C++ changes: slower but faster than Zig
+   - Zig changes: slowest (whole compilation unit)
+
+---
+
+## Release Build
+
+```bash
+bun run build:release
+```
+
+Output binaries:
+- `./build/release/bun`
+- `./build/release/bun-profile`
+
+---
+
+## Code Generation Scripts (Automatic)
+
+Runs automatically when specified files change:
+
+| Script | Output | Purpose |
+|--------|--------|---------|
+| `generate-jssink.ts` | `JSSink.cpp`, `JSSink.h` | ReadableStream interfacing |
+| `generate-classes.ts` | `ZigGeneratedClasses*` | JSC class bindings |
+| `cppbind.ts` | Zig bindings | C++ function exports |
+| `bundle-modules.ts` | Built-in modules | Node.js compat modules |
+| `bundle-functions.ts` | Global functions | ReadableStream, WritableStream, etc. |
+
+---
+
+## Building WebKit Locally (Advanced)
+
+```bash
+# Clone WebKit
+git clone https://github.com/oven-sh/WebKit vendor/WebKit
+
+# Checkout correct commit from cmake/tools/SetupWebKit.cmake
+git -C vendor/WebKit checkout <commit_hash>
+
+# Build JSC debug mode
+bun run jsc:build:debug && rm vendor/WebKit/WebKitBuild/Debug/JavaScriptCore/DerivedSources/inspector/InspectorProtocolObjects.h
+
+# Rebuild JSC after changes
+cmake --build vendor/WebKit/WebKitBuild/Debug --target jsc && rm vendor/WebKit/WebKitBuild/Debug/JavaScriptCore/DerivedSources/inspector/InspectorProtocolObjects.h
+
+# Build Bun with local JSC
+bun run build:local
+```
+
+**Note**: WebKit folder is 8GB+. Output goes to `./build/debug-local`.
+
+---
+
+## AddressSanitizer (ASAN)
+
+Enabled by default in debug builds on Linux/macOS.
+
+```bash
+# Build release with ASAN
+bun run build:release:asan
+
+# Disable ASAN in debug builds
+# Edit cmake/targets/BuildBun.cmake and change -Denable_asan=true to -Denable_asan=false
+```
+
+---
+
+## Troubleshooting
+
+### Ubuntu: 'span' file not found (C++20 header)
+**Cause**: GCC < 11 doesn't support C++20 features
+
+```bash
+$ sudo apt update
+$ sudo apt install gcc-11 g++-11
+$ sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test  # If above fails
+$ sudo apt install gcc-11 g++-11
+
+# Set as default
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100
+$ sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100
+```
+
+### macOS: libarchive compilation error
+```bash
+$ brew install pkg-config
+```
+
+### macOS: library not found for -lSystem
+```bash
+$ xcode-select --install
+```
+
+### Cannot find libatomic.a
+```bash
+bun run build -DUSE_STATIC_LIBATOMIC=OFF
+```
+
+**Warning**: May not work on other systems; built version may have compatibility issues.
+
+---
+
+## VSCode Setup
+
+1. Open repository in VSCode
+2. Run `Extensions: Show Recommended Extensions`
+3. Install Zig and C++ extensions
+4. ZLS auto-configures to use `./vendor/zig/zig.exe`
+5. Add `./build/debug` to `$PATH` to run `bun-debug` directly
+
+---
+
+## Additional Resources
+
+- **Repository**: https://github.com/oven-sh/bun
+- **Windows Build Guide**: Separate documentation provided
+- **Release from PRs**: `bunx bun-pr <pr-number>` or `bunx bun-pr <branch-name>`

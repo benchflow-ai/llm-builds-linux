@@ -1,0 +1,200 @@
+-- Looking for GetBestRoute2 - not found
+-- Looking for ConvertInterfaceIndexToLuid
+-- Looking for ConvertInterfaceIndexToLuid - not found
+-- Looking for ConvertInterfaceLuidToNameA
+-- Looking for ConvertInterfaceLuidToNameA - not found
+-- Looking for NotifyIpInterfaceChange
+-- Looking for NotifyIpInterfaceChange - not found
+-- Looking for RegisterWaitForSingleObject
+-- Looking for RegisterWaitForSingleObject - not found
+-- Looking for inet_net_pton
+-- Looking for inet_net_pton - found
+-- Looking for inet_ntop
+-- Looking for inet_ntop - found
+-- Looking for inet_pton
+-- Looking for inet_pton - found
+-- Looking for ioctl
+-- Looking for ioctl - found
+-- Looking for ioctlsocket
+-- Looking for ioctlsocket - not found
+-- Looking for IoctlSocket
+-- Looking for IoctlSocket - not found
+-- Looking for recv
+-- Looking for recv - found
+-- Looking for recvfrom
+-- Looking for recvfrom - found
+-- Looking for send
+-- Looking for send - found
+-- Looking for sendto
+-- Looking for sendto - found
+-- Looking for setsockopt
+-- Looking for setsockopt - found
+-- Looking for socket
+-- Looking for socket - found
+-- Looking for strcasecmp
+-- Looking for strcasecmp - found
+-- Looking for strcmpi
+-- Looking for strcmpi - not found
+-- Looking for strdup
+-- Looking for strdup - found
+-- Looking for stricmp
+-- Looking for stricmp - not found
+-- Looking for strncasecmp
+-- Looking for strncasecmp - found
+-- Looking for strncmpi
+-- Looking for strncmpi - not found
+-- Looking for strnicmp
+-- Looking for strnicmp - not found
+-- Looking for writev
+-- Looking for writev - found
+-- Looking for arc4random_buf
+-- Looking for arc4random_buf - found
+-- Looking for stat
+-- Looking for stat - found
+-- Looking for getifaddrs
+-- Looking for getifaddrs - found
+-- Looking for poll
+-- Looking for poll - found
+-- Looking for pipe
+-- Looking for pipe - found
+-- Looking for pipe2
+-- Looking for pipe2 - found
+-- Looking for kqueue
+-- Looking for kqueue - not found
+-- Looking for epoll_create1
+-- Looking for epoll_create1 - found
+-- Looking for __system_property_get
+-- Looking for __system_property_get - not found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Looking for include file pthread.h
+-- Looking for include file pthread.h - found
+-- Looking for include file pthread_np.h
+-- Looking for include file pthread_np.h - not found
+-- Looking for pthread_init
+-- Looking for pthread_init - not found
+-- Configuring done (14.2s)
+-- Generating done (0.0s)
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_CXX_COMPILER
+    CMAKE_LINKER_FLAGS
+    LLD_PROGRAM
+
+[0m
+-- Build files have been written to: /build/bun/build/debug/cares
+[43/632] Downloading zig
+-- Running script: DownloadZig.cmake
+-- Running script: DownloadUrl.cmake
+-- Downloading https://github.com/oven-sh/zig/releases/download/autobuild-c1423ff3fc7064635773a4a4616c5bf986eb00fe/bootstrap-aarch64-linux-musl.zip...
+-- [download 0% complete]
+-- [download 1% complete]
+-- [download 2% complete]
+-- [download 3% complete]
+-- [download 4% complete]
+-- [download 5% complete]
+-- [download 6% complete]
+-- [download 7% complete]
+-- [download 8% complete]
+-- [download 9% complete]
+-- [download 10% complete]
+-- [download 11% complete]
+-- [download 12% complete]
+-- [download 13% complete]
+-- [download 14% complete]
+-- [download 15% complete]
+-- [download 16% complete]
+-- [download 17% complete]
+-- [download 18% complete]
+-- [download 19% complete]
+-- [download 20% complete]
+-- [download 21% complete]
+-- [download 22% complete]
+-- [download 23% complete]
+-- [download 24% complete]
+-- [download 25% complete]
+-- [download 26% complete]
+-- [download 27% complete]
+-- [download 28% complete]
+-- [download 29% complete]
+-- [download 30% complete]
+-- [download 31% complete]
+-- [download 32% complete]
+-- [download 33% complete]
+-- [download 34% complete]
+-- [download 35% complete]
+-- [download 36% complete]
+-- [download 37% complete]
+-- [download 38% complete]
+-- [download 39% complete]
+-- [download 40% complete]
+-- [download 41% complete]
+-- [download 42% complete]
+-- [download 43% complete]
+-- [download 44% complete]
+-- [download 45% complete]
+-- [download 46% complete]
+-- [download 47% complete]
+-- [download 48% complete]
+-- [download 49% complete]
+-- [download 50% complete]
+-- [download 51% complete]
+-- [download 52% complete]
+-- [download 53% complete]
+-- [download 54% complete]
+-- [download 55% complete]
+-- [download 56% complete]
+-- [download 57% complete]
+-- [download 58% complete]
+-- [download 59% complete]
+-- [download 60% complete]
+-- [download 61% complete]
+-- [download 62% complete]
+-- [download 63% complete]
+-- [download 64% complete]
+-- [download 65% complete]
+-- [download 66% complete]
+-- [download 67% complete]
+-- [download 68% complete]
+-- [download 69% complete]
+-- [download 70% complete]
+-- [download 71% complete]
+-- [download 72% complete]
+-- [download 73% complete]
+-- [download 74% complete]
+-- [download 75% complete]
+-- [download 76% complete]
+-- [download 77% complete]
+-- [download 78% complete]
+-- [download 79% complete]
+-- [download 80% complete]
+-- [download 81% complete]
+-- [download 82% complete]
+-- [download 83% complete]
+-- [download 84% complete]
+-- [download 85% complete]
+-- [download 86% complete]
+-- [download 87% complete]
+-- [download 88% complete]
+-- [download 89% complete]
+-- [download 90% complete]
+-- [download 91% complete]
+-- [download 92% complete]
+-- [download 93% complete]
+-- [download 94% complete]
+-- [download 95% complete]
+-- [download 96% complete]
+-- [download 97% complete]
+-- [download 98% complete]
+-- [download 99% complete]
+-- [download 100% complete]
+-- Extracting bootstrap-aarch64-linux-musl.zip...
+-- Hoisting bootstrap-aarch64-linux-musl...
+-- Saved /build/bun/vendor/zig
+ninja: build stopped: subcommand failed.
+  cmake took 18.30 seconds
+  Command exited: code 1
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1

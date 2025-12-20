@@ -1,0 +1,100 @@
+-- Looking for acl
+-- Looking for acl - not found
+-- Looking for facl
+-- Looking for facl - not found
+-- Looking for acl_get_file in acl
+-- Looking for acl_get_file in acl - not found
+-- Performing Test HAVE_ACL_T
+-- Performing Test HAVE_ACL_T - Failed
+-- Performing Test HAVE_ACL_ENTRY_T
+-- Performing Test HAVE_ACL_ENTRY_T - Failed
+-- Performing Test HAVE_ACL_PERMSET_T
+-- Performing Test HAVE_ACL_PERMSET_T - Failed
+-- Performing Test HAVE_ACL_TAG_T
+-- Performing Test HAVE_ACL_TAG_T - Failed
+-- Looking for richacl_get_file in richacl
+-- Looking for richacl_get_file in richacl - not found
+-- Performing Test HAVE_STRUCT_RICHACE
+-- Performing Test HAVE_STRUCT_RICHACE - Failed
+-- Performing Test HAVE_STRUCT_RICHACL
+-- Performing Test HAVE_STRUCT_RICHACL - Failed
+-- ACL support: none
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBC
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBC
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC2
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC2 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC3
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBC3 -- not found
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA384_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBSYSTEM
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBSYSTEM -- not found
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_MD5_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_RMD160_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA1_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA256_LIBMD -- not found
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBMD
+-- Checking support for ARCHIVE_CRYPTO_SHA512_LIBMD -- not found
+-- Performing Test HAVE_VISIBILITY_ATTR
+-- Performing Test HAVE_VISIBILITY_ATTR - Success
+-- Configuring done (140.6s)
+-- Generating done (0.1s)
+[33mCMake Warning:
+  Manually-specified variables were not used by the project:
+
+    CMAKE_CXX_FLAGS
+    CMAKE_LINKER_FLAGS
+    ENABLE_LibGCC
+    LLD_PROGRAM
+
+[0m
+-- Build files have been written to: /build/bun/build/debug/libarchive
+[205/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/ncrypto.cpp.o
+[31mFAILED: [0mbun-zig.o /build/bun/build/debug/bun-zig.o 
+cd /build/bun && /build/bun/vendor/zig/zig build obj --cache-dir /build/bun/build/debug/cache/zig/local --global-cache-dir /build/bun/build/debug/cache/zig/global --zig-lib-dir /build/bun/vendor/zig/lib --prefix /build/bun/build/debug -Dobj_format=obj -Dtarget=aarch64-linux-gnu -Doptimize=Debug -Dcpu=native -Denable_logs=true -Denable_asan=true -Denable_fuzzilli=false -Denable_valgrind=false -Duse_mimalloc=true -Dllvm_codegen_threads=0 -Dversion=1.3.6 -Dreported_nodejs_version=24.3.0 -Dcanary=1 -Dcodegen_path=/build/bun/build/debug/codegen -Dcodegen_embed=false --prominent-compile-errors --summary all -Dsha=e79b512a9d29e05e894224217ccbb8ff5f4094f6
+[207/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoDhJob.cpp.o
+[208/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/NapiRef.cpp.o
+[209/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/NapiClass.cpp.o
+[210/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenDsaKeyPair.cpp.o
+[211/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenNidKeyPair.cpp.o
+[212/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenEcKeyPair.cpp.o
+[213/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenDhKeyPair.cpp.o
+[214/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenKeyPair.cpp.o
+[215/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoGenRsaKeyPair.cpp.o
+[216/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoHkdf.cpp.o
+[217/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/node/crypto/CryptoKeygen.cpp.o
+[218/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/bindings.cpp.o
+[219/632] Building CXX object CMakeFiles/bun-debug.dir/src/bun.js/bindings/napi.cpp.o
+ninja: build stopped: subcommand failed.
+  cmake took 7.09 minutes
+  Command exited: code 1
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1

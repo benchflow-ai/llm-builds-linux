@@ -1,0 +1,63 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.82kB done
+#1 DONE 0.0s
+
+#2 [auth] library/ubuntu:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/ubuntu:24.04
+#3 DONE 0.6s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [ 1/10] FROM docker.io/library/ubuntu:24.04@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54
+#5 resolve docker.io/library/ubuntu:24.04@sha256:c35e29c9450151419d9448b0fd75374fec4fff364a27f176fb458d472dfc9e54 done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 30B done
+#6 DONE 0.0s
+
+#7 [ 4/10] RUN wget https://apt.llvm.org/llvm.sh &&     chmod +x llvm.sh &&     ./llvm.sh 19 all &&     rm llvm.sh &&     rm -rf /var/lib/apt/lists/*
+#7 CACHED
+
+#8 [ 5/10] RUN curl -fsSL https://bun.com/install | bash
+#8 CACHED
+
+#9 [ 6/10] WORKDIR /build
+#9 CACHED
+
+#10 [ 2/10] RUN apt-get update && apt-get install -y     build-essential     curl     wget     lsb-release     software-properties-common     git     cmake     ninja-build     pkg-config     libtool     xz-utils     unzip     python3     python3-pip     golang     rustc     cargo     ruby-full     ccache     gnupg     ca-certificates     && rm -rf /var/lib/apt/lists/*
+#10 CACHED
+
+#11 [ 8/10] WORKDIR /build/bun
+#11 CACHED
+
+#12 [ 9/10] COPY build.sh /build/build.sh
+#12 CACHED
+
+#13 [ 3/10] RUN apt-get update && apt-get install -y gcc-11 g++-11 &&     update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 100 &&     update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-11 100 &&     rm -rf /var/lib/apt/lists/*
+#13 CACHED
+
+#14 [ 7/10] RUN git clone --depth 1 https://github.com/oven-sh/bun.git bun
+#14 CACHED
+
+#15 [10/10] RUN chmod +x /build/build.sh
+#15 CACHED
+
+#16 exporting to image
+#16 exporting layers done
+#16 exporting manifest sha256:f6ae465d70413b5d5f23289817081637e15c0ef273eda3ef235f9fa7020d5955 done
+#16 exporting config sha256:672de667a159f379522197542ffa5e52f853adb5461892c0c949fdf70662f0fc done
+#16 exporting attestation manifest sha256:93835747cb03b82f4435970e913df7dab3f91c2e047cea662739fa1dfdd2bb0a done
+#16 exporting manifest list sha256:520b1c6713b84847de941ad709f030cebb914bf65f4a1ffc7bf06cc4cf947afc done
+#16 naming to docker.io/library/bun-build:latest done
+#16 unpacking to docker.io/library/bun-build:latest
+#16 unpacking to docker.io/library/bun-build:latest 15.7s done
+#16 DONE 15.7s
+
+View build details: docker-desktop://dashboard/build/desktop-linux/desktop-linux/zjfu6ifdfwvs9dl3t8aui3u0t

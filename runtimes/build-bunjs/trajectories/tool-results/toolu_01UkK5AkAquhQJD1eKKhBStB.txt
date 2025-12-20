@@ -1,0 +1,2 @@
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1

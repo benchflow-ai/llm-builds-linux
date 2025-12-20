@@ -1,0 +1,11 @@
+[2/632] Generating ErrorCode.{zig,h}
+[31mFAILED: [0mlolhtml/debug/liblolhtml.a /build/bun/build/debug/lolhtml/debug/liblolhtml.a 
+[1m[31merror[0m[1m:[0m failed to parse lock file at: /build/bun/vendor/lolhtml/c-api/Cargo.lock
+[31mFAILED: [0m/build/bun/node_modules/.bin/esbuild 
+[0m[31mEEXIST[0m[2m:[0m File exists: failed to symlink dependencies for package: bun-types@workspace:packages/bun-types [2m(symlink)[0m
+[0m[31mEEXIST[0m[2m:[0m File exists: failed to link package: capital-case@1.0.4 [2m(link)[0m
+[31mFAILED: [0mcodegen/cpp.zig /build/bun/build/debug/codegen/cpp.zig 
+[0m[31m[0m[31mEEXIST[0m[2m:[0m File exists: failed to symlink dependencies for package: @types/bun@workspace:packages/@types/bun [2m(symlink)[0m
+ninja: build stopped: subcommand failed.
+error: script "build" exited with code 1
+ERROR: Build failed with exit code 1
