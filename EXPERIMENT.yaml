@@ -1,0 +1,123 @@
+name: Build Chromium from Source
+date: 2025-12-15
+status: SUCCESS
+
+objective: |
+  Test if an LLM agent can successfully build Chromium browser from source
+  on macOS ARM64, following official build instructions.
+
+environment:
+  os: macOS 26.0 (Build 25A353)
+  architecture: ARM64 (Apple Silicon M2)
+  ram: 32GB
+  disk_space_available: 199GB
+  xcode_version: 26.2
+  python_version: 3.x
+
+agent:
+  model: Claude Opus 4.5
+  model_id: claude-opus-4-5-20251101
+  sessions: 2
+  total_wall_clock_time: ~6 hours
+  agent_active_time: ~3 hours
+
+cost:
+  total_usd: 42.84
+  session_1_usd: 11.53
+  session_2_usd: 31.31
+  breakdown:
+    input_tokens: 0.03
+    output_tokens: 1.28
+    cache_read: 11.06
+    cache_creation: 30.46
+
+human_interaction:
+  initial_message: "can you try building chrome for me"
+  follow_up_messages: 2
+  critical_interventions: 1
+  intervention_type: Xcode installation
+
+results:
+  success: true
+  binary_location: chromium/src/out/Default/Chromium.app
+  build_output_size: 7.8GB
+  source_size: 35GB
+  compilation_actions: 118484
+
+steps_completed:
+  - Branch setup and renaming
+  - Web research of official Chromium build documentation
+  - System requirements check
+  - depot_tools installation
+  - Source code fetch (35GB, ~30-60 min)
+  - Build script creation
+  - Build configuration (args.gn)
+  - GN build file generation
+  - Chromium compilation (2+ hours)
+  - Binary verification
+
+blockers_encountered:
+  - name: Xcode requirement
+    description: Full Xcode required (not just Command Line Tools)
+    resolution: Human installed Xcode from App Store
+    agent_action: Documented blocker and provided instructions
+
+sanity_checks_performed:
+  - Verified system architecture (ARM64)
+  - Checked disk space (199GB available)
+  - Verified RAM (32GB)
+  - Checked existing tools (git, python3, xcode-select)
+  - Verified Xcode installation after blocker resolved
+  - Monitored build progress with periodic checks
+  - Verified final binary exists and has correct size
+
+sanity_checks_missed:
+  - Did not check if Xcode was installed before starting (only checked xcode-select)
+  - Did not verify macOS SDK version compatibility upfront
+  - Did not estimate total disk space needed before starting (source + build = ~43GB)
+
+key_observations:
+  what_worked:
+    - Research phase found correct official documentation quickly
+    - Systematic approach with todo list tracking
+    - Background processes for long-running operations
+    - State recovery between sessions
+    - Build progress monitoring and completion detection
+
+  what_required_human_help:
+    - Xcode installation (critical blocker)
+    - Session continuation prompting
+
+  complexity_metrics:
+    tool_calls: 200+
+    web_searches: 2
+    file_operations: 50+
+    bash_commands: 100+
+
+lessons_learned:
+  - Environment dependencies (Xcode, SDKs) are major blockers for agents
+  - Long-running builds (2-8 hours) require monitoring strategies
+  - Disk space estimation critical (100GB+ total)
+  - Component builds (is_component_build=true) faster than static builds
+  - Disabling symbols (symbol_level=0) significantly reduces build time
+
+artifacts:
+  - build_chromium.sh
+  - chromium/src/out/Default/args.gn
+  - README.md
+  - .gitignore
+  - trajectories/session1-setup-and-fetch.jsonl
+  - trajectories/session2-build-and-monitor.jsonl
+  - trajectories/SUMMARY.md
+
+related_pr: https://github.com/benchflow-ai/llm-builds-linux/pull/1
+
+notes: |
+  This experiment demonstrates that current LLM agents can successfully
+  build complex software like Chromium, but face challenges with:
+  1. Environment setup requiring proprietary tools (Xcode)
+  2. Long feedback loops (hours between action and result)
+  3. Large disk/time requirements
+
+  The agent handled the complexity well once environment blockers were resolved,
+  successfully navigating a 100+ step process with minimal human guidance.
