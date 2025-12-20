@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  buildroot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: buildroot-builder:latest
+    container_name: buildroot-build
+    volumes:
+      - ./build.sh:/workspace/build.sh:ro
+      - ./output:/workspace/output
+    command: /bin/bash /workspace/build.sh
+    # Allocate sufficient resources
+    # Buildroot builds can be memory and CPU intensive
