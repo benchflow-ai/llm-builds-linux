@@ -1,0 +1,39 @@
+name: "Build htop from Source"
+id: build-htop
+category: build
+status: success
+
+agent:
+  model: claude-opus-4-5
+  sessions: 1
+  total_duration_hours: 0.5
+  active_duration_hours: 0.3
+
+task:
+  description: "Build htop from source using autotools"
+  initial_prompt: "Create experiment for compiling htop from source"
+  difficulty: easy
+  estimated_steps: 20
+
+results:
+  success: true
+  partial_score: 1.0
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+  key_metrics:
+    build_successful: true
+    binary_verified: true
+
+findings:
+  successes:
+    - "Autotools build works perfectly"
+    - "Dependencies correctly identified"
+  lessons:
+    - "Simple builds are straightforward"
+    - "Docker provides reproducibility"
+
+tags:
+  - software
+  - htop
+  - autotools

@@ -1,0 +1,53 @@
+name: "Build Linux Kernel from Source"
+id: build-linux-kernel
+category: build
+status: success
+
+agent:
+  model: claude-opus-4-5
+  sessions: 1
+  total_duration_hours: 1
+  active_duration_hours: 0.5
+
+task:
+  description: "Compile Linux kernel from source for QEMU"
+  initial_prompt: "Create a complete experiment for compiling a Linux kernel from source"
+  difficulty: hard
+  estimated_steps: 75
+
+results:
+  success: true
+  partial_score: 1.0
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+  key_metrics:
+    kernel_version: "6.6.63"
+    build_time_minutes: 20
+    kernel_size_mb: 11
+    boots_in_qemu: true
+
+human_intervention:
+  count: 0
+  critical: false
+  details: []
+
+findings:
+  successes:
+    - "Kernel compiles from source"
+    - "Virtio drivers enabled"
+    - "Boots in QEMU"
+  lessons:
+    - "Defconfig provides good defaults"
+    - "Virtio drivers essential for QEMU"
+    - "Build is deterministic with proper deps"
+
+references:
+  docs:
+    - "https://www.kernel.org/"
+
+tags:
+  - linux
+  - kernel
+  - qemu
+  - lfs

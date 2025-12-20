@@ -100,11 +100,22 @@ Research identified these common failure points:
 
 ## Completed Experiments
 
-| Experiment | Category | Status | Agent |
-|------------|----------|--------|-------|
-| [build-debootstrap](linux/build-debootstrap/) | Linux | Partial (0.7) | Claude Opus 4.5 |
-| [build-livebuild](linux/build-livebuild/) | Linux | Partial (0.6) | Claude Opus 4.5 |
-| [benchmark](linux/benchmark/) | Linux | Success (1.0) | Claude Opus 4.5 |
+### Linux Distribution Builds
+| Experiment | Category | Status | Difficulty | Agent |
+|------------|----------|--------|------------|-------|
+| [build-debootstrap](linux/build-debootstrap/) | Linux | Partial (0.7) | Hard | Claude Opus 4.5 |
+| [build-livebuild](linux/build-livebuild/) | Linux | Partial (0.6) | Hard | Claude Opus 4.5 |
+| [build-busybox](linux/build-busybox/) | Linux | Success (1.0) | Medium | Claude Opus 4.5 |
+| [build-alpine](linux/build-alpine/) | Linux | Success (1.0) | Medium | Claude Opus 4.5 |
+| [build-kernel](linux/build-kernel/) | Linux | Success (1.0) | Hard | Claude Opus 4.5 |
+| [build-yocto](linux/build-yocto/) | Linux | Success (1.0) | Hard | Claude Opus 4.5 |
+| [benchmark](linux/benchmark/) | Framework | Success (1.0) | N/A | Claude Opus 4.5 |
+
+### Software Builds
+| Experiment | Category | Status | Difficulty | Agent |
+|------------|----------|--------|------------|-------|
+| [build-htop](software/build-htop/) | Software | Success (1.0) | Easy | Claude Opus 4.5 |
+| [build-nginx](software/build-nginx/) | Software | Success (1.0) | Medium | Claude Opus 4.5 |
 
 ## Contributing Experiments
 

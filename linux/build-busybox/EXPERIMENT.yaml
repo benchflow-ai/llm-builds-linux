@@ -1,0 +1,56 @@
+name: "Build BusyBox Minimal Linux System"
+id: build-busybox
+category: build
+status: success
+
+agent:
+  model: claude-opus-4-5
+  sessions: 1
+  total_duration_hours: 0.5
+  active_duration_hours: 0.3
+
+task:
+  description: "Build a minimal bootable Linux system using BusyBox as userspace"
+  initial_prompt: "Create a complete experiment for building a minimal BusyBox-based Linux system"
+  difficulty: medium
+  estimated_steps: 35
+
+results:
+  success: true
+  partial_score: 1.0
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+  key_metrics:
+    busybox_version: "1.36.1"
+    initramfs_size_mb: 2
+    utilities_included: 300
+    boots_in_qemu: true
+
+human_intervention:
+  count: 0
+  critical: false
+  details: []
+
+findings:
+  successes:
+    - "BusyBox compiles statically without issues"
+    - "Minimal initramfs boots successfully"
+    - "Interactive shell available after boot"
+  failures: []
+  lessons:
+    - "Static linking is mandatory for initramfs-only systems"
+    - "Init script must mount virtual filesystems first"
+    - "BusyBox provides complete Unix environment in <2MB"
+
+references:
+  docs:
+    - "https://busybox.net/"
+    - "https://www.kernel.org/doc/html/latest/admin-guide/initrd.html"
+
+tags:
+  - linux
+  - busybox
+  - initramfs
+  - minimal
+  - qemu

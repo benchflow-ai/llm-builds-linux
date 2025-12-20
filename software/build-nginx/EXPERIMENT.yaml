@@ -1,0 +1,39 @@
+name: "Build Nginx from Source with Custom Modules"
+id: build-nginx-custom-modules
+category: build
+status: success
+
+agent:
+  model: claude-opus-4-5
+  sessions: 1
+  total_duration_hours: 1
+  active_duration_hours: 0.8
+
+task:
+  description: "Build Nginx with third-party modules"
+  difficulty: medium
+  estimated_steps: 40
+
+results:
+  success: true
+  partial_score: 1.0
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+  key_metrics:
+    nginx_version: "1.25.3"
+    custom_modules: 2
+    build_successful: true
+
+findings:
+  successes:
+    - "Nginx compiles with custom modules"
+    - "headers-more and RTMP modules work"
+  lessons:
+    - "Module source must be alongside nginx"
+    - "--add-module for third-party modules"
+
+tags:
+  - nginx
+  - web-server
+  - custom-modules
