@@ -1,0 +1,20 @@
+# Build artifacts and source (too large to commit)
+chromium/
+depot_tools/
+
+# Build logs
+*.log
+build-output.log
+
+# Output artifacts
+output/
+*.iso
+*.img
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# System files
+.DS_Store

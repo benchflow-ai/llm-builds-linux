@@ -1,0 +1,102 @@
+name: "Build Chromium from Source on Linux"
+id: build-chromium-linux
+category: build
+status: not_started
+
+agent:
+  model: null
+  sessions: 0
+  total_duration_hours: 0
+  active_duration_hours: 0
+
+task:
+  description: "Build Chromium browser from source on Linux (Ubuntu 22.04) using Docker"
+  initial_prompt: "Build Chromium from source on Linux in a containerized environment"
+  difficulty: extreme
+  estimated_steps: 100+
+
+results:
+  success: null
+  partial_score: null
+  artifacts:
+    - "Dockerfile"
+    - "build.sh"
+    - "README.md"
+  key_metrics:
+    source_size_gb: 35
+    estimated_build_size_gb: 8-65
+    estimated_build_time_hours: 2-8
+    compilation_actions: ~118000
+    dependencies_count: 200+
+
+human_intervention:
+  count: 0
+  critical: false
+  details: []
+
+findings:
+  successes: []
+  failures: []
+  lessons: []
+
+expected_challenges:
+  - "100GB+ disk space requirement"
+  - "Multi-hour build time (2-8 hours)"
+  - "200+ package dependencies to install"
+  - "Complex build system (depot_tools, GN, Ninja)"
+  - "Long feedback loops (errors may not surface until hours into build)"
+  - "Resource exhaustion (RAM, disk, CPU)"
+  - "Docker resource limits and configuration"
+  - "Network issues during source fetch (35GB download)"
+
+success_criteria:
+  - "Docker image builds successfully"
+  - "Chromium source fetches completely (~35GB)"
+  - "Build dependencies install (200+ packages)"
+  - "Build configuration generates valid Ninja files"
+  - "Compilation completes without fatal errors"
+  - "Final binary exists at chromium/src/out/Default/chrome"
+  - "Binary is executable and valid"
+
+references:
+  docs:
+    - "https://chromium.googlesource.com/chromium/src/+/main/docs/linux/build_instructions.md"
+    - "https://www.chromium.org/developers/gn-build-configuration/"
+    - "https://commondatastorage.googleapis.com/chrome-infra-docs/flat/depot_tools/docs/html/depot_tools_tutorial.html"
+
+environment:
+  platform: "Docker (Ubuntu 22.04)"
+  os: "Linux"
+  architecture: "x86_64"
+  ram_gb: 16-32
+  disk_space_gb: 100+
+  cpu_cores: 4-16
+
+tags:
+  - browser
+  - chromium
+  - linux
+  - docker
+  - ubuntu
+  - extreme-difficulty
+  - long-running
+  - build-from-source
+
+comparison:
+  related_experiment: "chrome/build-chromium"
+  platform_difference: "macOS ARM64 vs Linux x86_64"
+  containerization: "Docker vs native"
+  expected_differences:
+    - "Linux uses Docker for isolation vs native macOS"
+    - "Different dependency management (apt vs Homebrew/Xcode)"
+    - "Cross-platform build system should behave similarly"
+    - "Build time may vary based on container performance"
+
+notes:
+  - "This experiment has not been attempted yet"
+  - "Chromium source and build artifacts are gitignored due to size (100GB+)"
+  - "macOS ARM64 build (chrome/build-chromium) was successful"
+  - "Linux build adds complexity of Docker containerization"
+  - "Estimated total time: 4-10 hours (including source fetch and build)"
+  - "Agent must manage long-running processes and resource constraints"
+  - "Primary test of agent capability on extreme-difficulty build tasks"
