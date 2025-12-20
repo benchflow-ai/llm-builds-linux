@@ -233,7 +233,36 @@ Detailed narrative of the agent's journey.
 
 ### 4. trajectories/session-*.jsonl
 
-Sanitized session logs (one JSON object per line):
+Session logs in two formats:
+
+```
+trajectories/
+├── SUMMARY.md              # Narrative summary
+├── raw/                    # Original, unmodified logs
+│   └── session-*.jsonl     # Complete session data
+└── sanitized/              # Cleaned logs for sharing
+    └── session-*.jsonl     # Sanitized session data
+```
+
+#### Raw Logs (trajectories/raw/)
+
+Complete, unmodified session logs. Store everything:
+
+```json
+{"type": "user", "timestamp": "2025-12-15T15:41:00Z", "text": "can you build..."}
+{"type": "assistant", "timestamp": "2025-12-15T15:41:05Z", "tool": "Bash", "command": "git clone...", "full_output": "..."}
+{"type": "tool_result", "timestamp": "2025-12-15T15:41:10Z", "success": true, "output": "...full output..."}
+```
+
+**Why keep raw logs:**
+- Enables detailed post-mortem analysis
+- Preserves context for debugging agent behavior
+- Required for accurate token/cost calculations
+- Valuable for training and evaluation research
+
+#### Sanitized Logs (trajectories/sanitized/)
+
+Cleaned versions safe for public sharing:
 
 ```json
 {"type": "user", "timestamp": "2025-12-15T15:41:00Z", "text": "can you build..."}
@@ -245,6 +274,7 @@ Sanitized session logs (one JSON object per line):
 - Remove API keys, tokens, passwords
 - Truncate outputs longer than 500 chars
 - Replace personal paths with `$HOME` or `$WORKDIR`
+- Remove any PII or sensitive data
 
 ### 5. artifacts/
 

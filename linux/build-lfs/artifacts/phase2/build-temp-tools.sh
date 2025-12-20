@@ -44,9 +44,9 @@ build_m4() {
     echo "=== Building M4 ==="
     cd $SOURCES
 
-    rm -rf m4-1.4.19
-    tar xf m4-1.4.19.tar.xz
-    cd m4-1.4.19
+    rm -rf m4-1.4.20
+    tar xf m4-1.4.20.tar.xz
+    cd m4-1.4.20
 
     ./configure --prefix=/usr   \
                 --host=$LFS_TGT \
@@ -56,7 +56,7 @@ build_m4() {
     make DESTDIR=$LFS install
 
     cd $SOURCES
-    rm -rf m4-1.4.19
+    rm -rf m4-1.4.20
 
     echo "M4: DONE"
 }

@@ -1,7 +1,7 @@
 # LFS Build Environment
-# Based on Debian bookworm with all LFS host requirements
+# Based on Debian trixie (testing) for glibc 2.40 compatibility with GCC 15.x
 # Use --platform to ensure correct architecture
-FROM --platform=linux/arm64 debian:bookworm
+FROM --platform=linux/arm64 debian:trixie
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV LFS=/mnt/lfs
