@@ -233,18 +233,36 @@ Detailed narrative of the agent's journey.
 
 ### 4. trajectories/session-*.jsonl
 
-Sanitized session logs (one JSON object per line):
+**Raw agent trajectory logs** - These are critical for evaluating agent behavior.
+
+Include the original, unedited session logs from the agent run. These capture:
+- Every tool call the agent made
+- All reasoning and decision points
+- Errors, retries, and recovery attempts
+- The full conversation flow
+
+Format (one JSON object per line):
 
 ```json
 {"type": "user", "timestamp": "2025-12-15T15:41:00Z", "text": "can you build..."}
-{"type": "assistant", "timestamp": "2025-12-15T15:41:05Z", "tool": "Bash", "command": "git clone..."}
-{"type": "tool_result", "timestamp": "2025-12-15T15:41:10Z", "success": true}
+{"type": "assistant", "timestamp": "2025-12-15T15:41:05Z", "tool": "Bash", "command": "git clone...", "reasoning": "Need to clone the source first"}
+{"type": "tool_result", "timestamp": "2025-12-15T15:41:10Z", "success": true, "output": "Cloning into..."}
+{"type": "assistant", "timestamp": "2025-12-15T15:41:15Z", "tool": "Bash", "command": "make", "reasoning": "Now building..."}
+{"type": "error", "timestamp": "2025-12-15T15:42:00Z", "message": "make: *** No rule to make target..."}
+{"type": "assistant", "timestamp": "2025-12-15T15:42:05Z", "tool": "Read", "file": "Makefile", "reasoning": "Need to check why make failed"}
 ```
 
-**Sanitization rules:**
+**Why raw trajectories matter:**
+- Shows where agents get stuck
+- Reveals decision-making patterns
+- Enables trajectory analysis for benchmarking
+- Helps identify common failure modes
+
+**Sanitization rules** (minimal - preserve as much as possible):
 - Remove API keys, tokens, passwords
-- Truncate outputs longer than 500 chars
 - Replace personal paths with `$HOME` or `$WORKDIR`
+- Keep full command outputs (don't truncate) when possible
+- Preserve error messages completely
 
 ### 5. artifacts/
 
