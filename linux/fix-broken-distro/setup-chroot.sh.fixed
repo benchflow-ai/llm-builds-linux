@@ -1,0 +1,54 @@
+#!/bin/bash
+# Script to configure the system inside chroot
+# FIXED VERSION
+
+set -e
+
+CHROOT_DIR="$1"
+
+if [ -z "$CHROOT_DIR" ]; then
+    echo "Usage: $0 <chroot_directory>"
+    exit 1
+fi
+
+echo "Configuring system in chroot..."
+
+# Set hostname
+echo "custom-distro" > "$CHROOT_DIR/etc/hostname"
+
+# FIXED: Configure network with correct interface naming
+# Modern systems use predictable network interface names
+cat > "$CHROOT_DIR/etc/network/interfaces" <<EOF
+auto lo
+iface lo inet loopback
+
+# Use DHCP on primary network interface
+# This will work with eth0, enp0s3, or other primary interfaces
+auto eth0
+iface eth0 inet dhcp
+EOF
+
+# FIXED: Added DNS configuration
+cat > "$CHROOT_DIR/etc/resolv.conf" <<EOF
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+EOF
+
+# FIXED: Set root password non-interactively
+echo "Setting root password..."
+echo "root:toor" | chroot "$CHROOT_DIR" chpasswd
+
+# FIXED: Configure and generate locale
+echo "en_US.UTF-8 UTF-8" > "$CHROOT_DIR/etc/locale.gen"
+chroot "$CHROOT_DIR" locale-gen
+echo "LANG=en_US.UTF-8" > "$CHROOT_DIR/etc/default/locale"
+
+# FIXED: Set timezone
+chroot "$CHROOT_DIR" ln -sf /usr/share/zoneinfo/UTC /etc/localtime
+
+# FIXED: Install kernel with correct package name for Debian
+echo "Installing Linux kernel..."
+chroot "$CHROOT_DIR" apt-get update
+chroot "$CHROOT_DIR" apt-get install -y linux-image-amd64
+
+echo "Chroot configuration complete"

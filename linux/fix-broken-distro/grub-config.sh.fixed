@@ -1,0 +1,31 @@
+#!/bin/bash
+# GRUB bootloader configuration script
+# FIXED VERSION
+
+set -e
+
+# FIXED: Correct grub installation device (typical first disk)
+GRUB_DEVICE="/dev/sda"
+
+# Get root UUID for kernel parameters
+ROOT_UUID=$(blkid -s UUID -o value "${GRUB_DEVICE}1" 2>/dev/null || echo "")
+
+# FIXED: Correct command name (grub-install not grub-instal)
+grub-install --target=i386-pc --boot-directory=/boot $GRUB_DEVICE
+
+# FIXED: Added GRUB environment block creation
+grub-editenv /boot/grub/grubenv create
+
+# FIXED: Generate GRUB configuration file
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# FIXED: Set default kernel parameters in GRUB config
+if [ -n "$ROOT_UUID" ]; then
+    # Update default parameters with root UUID
+    sed -i "s|root=[^ ]*|root=UUID=$ROOT_UUID|g" /boot/grub/grub.cfg
+fi
+
+# Ensure quiet boot and ro (read-only) root
+sed -i 's|linux[[:space:]]*/boot/vmlinuz|& ro quiet|g' /boot/grub/grub.cfg
+
+echo "GRUB installation complete"

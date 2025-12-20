@@ -1,0 +1,16 @@
+# /etc/fstab: static file system information
+# FIXED VERSION
+
+# Root filesystem - FIXED: correct ext4 filesystem type
+UUID=PLACEHOLDER-UUID  /  ext4  errors=remount-ro  0  1
+
+# FIXED: Added critical mount points for system operation
+proc    /proc    proc    defaults    0    0
+sysfs   /sys     sysfs   defaults    0    0
+devpts  /dev/pts devpts  gid=5,mode=620    0    0
+
+# Swap - FIXED: using swap file instead of non-existent device, or comment out
+# /swapfile  none  swap  sw  0  0
+
+# Temporary files
+tmpfs  /tmp  tmpfs  defaults,noatime,mode=1777  0  0

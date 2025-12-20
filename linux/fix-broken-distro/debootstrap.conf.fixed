@@ -1,0 +1,20 @@
+# Debootstrap configuration for custom Debian-based distro
+# FIXED VERSION
+
+# Architecture configuration - FIXED: valid architecture
+ARCH="amd64"
+
+# Suite/Release
+SUITE="bookworm"
+
+# Mirror
+MIRROR="http://deb.debian.org/debian"
+
+# Target directory
+TARGET_DIR="/mnt/custom-distro"
+
+# Include packages - FIXED: added linux-image-amd64 kernel package
+INCLUDE_PACKAGES="systemd,udev,network-manager,grub-pc,sudo,vim,openssh-server,linux-image-amd64,linux-headers-amd64"
+
+# Exclude packages
+EXCLUDE_PACKAGES="vim-tiny,nano"

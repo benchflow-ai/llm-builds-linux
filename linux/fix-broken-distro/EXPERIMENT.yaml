@@ -1,0 +1,135 @@
+name: Fix Broken Linux Distribution Build
+category: linux-distro-debugging
+difficulty: hard
+estimated_steps: 100
+
+description: |
+  Debug and fix a deliberately broken Linux distribution build configuration.
+  The configuration contains 16 common issues spanning architecture settings,
+  package dependencies, filesystem configuration, bootloader setup, and system
+  initialization. Tests an agent's ability to identify root causes and fix
+  complex multi-file system configuration problems.
+
+task_type: debugging
+skills_required:
+  - Linux system administration
+  - Debootstrap/package management
+  - Filesystem configuration
+  - Bootloader (GRUB) setup
+  - Multi-file dependency analysis
+  - Build system debugging
+
+tools_needed:
+  - debootstrap
+  - grub-pc-bin
+  - qemu-utils (optional, for boot testing)
+  - Docker (for isolated build environment)
+
+success_criteria:
+  - Identify all 16 configuration errors
+  - Fix architecture specification
+  - Add missing kernel package
+  - Correct filesystem types
+  - Add critical mount points
+  - Fix GRUB installation script
+  - Correct package names
+  - Make all commands non-interactive
+  - Add locale and timezone configuration
+  - Configure DNS resolution
+  - Successfully complete debootstrap build
+
+failure_modes:
+  - Missing issues during static analysis
+  - Fixing symptoms instead of root causes
+  - Creating circular dependencies
+  - Breaking working configurations while fixing broken ones
+  - Not understanding build vs. runtime errors
+  - Distribution-specific package naming confusion
+
+issues_breakdown:
+  critical: 8  # Block build or boot completely
+  high: 4      # Severely degrade functionality
+  medium: 2    # Minor functionality issues
+  low: 2       # Cosmetic or optional features
+
+expected_debugging_flow:
+  - Read and analyze configuration files
+  - Create systematic test framework
+  - Run static validation checks
+  - Identify issues by category
+  - Prioritize critical fixes
+  - Fix issues iteratively
+  - Validate each fix doesn't break others
+  - Document debugging process
+
+key_challenges:
+  - Multi-file dependencies require understanding entire system
+  - Some errors only manifest at runtime (boot time)
+  - Package names vary between distributions
+  - Need to distinguish critical vs. optional fixes
+  - Interactive commands must be converted to non-interactive
+  - GRUB configuration requires specific sequence
+
+evaluation_metrics:
+  issues_found: 16
+  critical_fixed: 8
+  build_success: true
+  boot_success: true  # If tested with QEMU
+  documentation_quality: high
+
+time_estimate:
+  static_analysis: "15 minutes"
+  test_creation: "20 minutes"
+  issue_identification: "25 minutes"
+  fixing_iteration: "40 minutes"
+  validation: "15 minutes"
+  documentation: "20 minutes"
+  total: "2-3 hours"
+
+reference_files:
+  broken_config:
+    - debootstrap.conf
+    - fstab
+    - grub-config.sh
+    - setup-chroot.sh
+  fixed_config:
+    - debootstrap.conf.fixed
+    - fstab.fixed
+    - grub-config.sh.fixed
+    - setup-chroot.sh.fixed
+  documentation:
+    - BROKEN.md
+    - trajectories/SUMMARY.md
+  automation:
+    - test-build.sh
+    - build.sh
+    - build-fixed.sh
+    - Dockerfile
+
+testing:
+  unit_tests: test-build.sh validates configuration correctness
+  integration: build.sh runs complete debootstrap process
+  validation: build-fixed.sh demonstrates working configuration
+
+extensions:
+  - Add QEMU boot test to verify system actually boots
+  - Create more subtle bugs requiring deeper analysis
+  - Add performance issues (slow but working configs)
+  - Test across multiple distributions (Debian/Ubuntu/Fedora)
+  - Add security misconfigurations to identify
+
+related_skills:
+  - Kernel configuration
+  - Init system setup (systemd)
+  - Network configuration
+  - Package dependency resolution
+  - Shell scripting
+  - Container/virtualization concepts
+
+learning_outcomes:
+  - Understanding Linux boot process
+  - Debootstrap workflow
+  - Common build configuration errors
+  - Systematic debugging methodology
+  - Multi-component system thinking
+  - Build vs. runtime error distinction

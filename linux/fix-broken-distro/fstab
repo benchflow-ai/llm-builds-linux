@@ -1,0 +1,13 @@
+# /etc/fstab: static file system information
+# BROKEN: incorrect mount points and missing critical entries
+
+# Root filesystem - BROKEN: wrong filesystem type
+UUID=PLACEHOLDER-UUID  /  ext5  errors=remount-ro  0  1
+
+# Swap - BROKEN: incorrect device path
+/dev/sda99  none  swap  sw  0  0
+
+# BROKEN: Missing /proc, /sys, /dev/pts entries that are critical for system boot
+
+# Temporary files - this one is correct
+tmpfs  /tmp  tmpfs  defaults,noatime,mode=1777  0  0
