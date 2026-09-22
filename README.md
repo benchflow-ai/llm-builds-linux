@@ -1,3 +1,5 @@
+
+
 # llm-builds-linux
 
 Can LLM agents build Linux distros? How far can they go?
@@ -230,6 +232,9 @@ is_component_build = true
 symbol_level = 0
 angle_enable_metal = false
 EOF
+
+# Sync Chromium dependencies
+gclient sync --jobs=8
 
 # Generate build files
 gn gen out/Default
